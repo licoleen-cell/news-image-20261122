@@ -1,0 +1,64 @@
+THE WORLD — SUNDAY 22 NOVEMBER 2026
+Every string rendered into image.png, in reading order.
+
+== MASTHEAD ==
+THE WORLD
+VOL. XII . NO. 4,182
+LATE EDITION
+SUNDAY 22 NOVEMBER 2026
+
+== LEAD ==
+Kicker : CLIMATE SUMMIT COLLAPSES
+Headline: COP31 collapses without a deal as Europe holds firm
+Deck    : Antalya talks close two days late and empty-handed after the EU bloc
+          refuses to sign a final text that never names coal, oil or gas.
+Caption : Antalya, Turkey: the summit venue where talks ran past deadline.
+Artwork : stylised locator globe with a red pin on Antalya.
+
+== GRID (3 x 3) ==
+1. LIBYA . Benghazi
+   Sea drone hits Russian warship
+   Libyan officers say a Ukrainian drone struck the ship at the base.
+
+2. UKRAINE . Dymer
+   Russian drone hits Kyiv apartment block
+   Rescue teams search the rubble in Dymer, near the capital.
+
+3. GULF . Manama
+   Iran projectile hits Bahrain industrial site
+   Two wounded at Sitra; Iran's Guards claim two US radars destroyed.
+
+4. INDONESIA . Cikande
+   Factory fire kills three in Banten
+   Blaze at a candy plant in Cikande leaves dozens missing.
+
+5. SPACE . Mercury
+   BepiColombo reaches orbit around Mercury
+   European-Japanese probe arrives after an eight-year voyage.
+
+6. WEST BANK . Ramallah
+   Settlers burn cars across West Bank
+   Israel opens a probe into arson in four villages.
+
+7. NIGERIA . Bayelsa
+   Boat capsize kills 24 in Nigeria
+   At least 24 died; the vessel carried mourners to a funeral.
+
+8. MARKETS . New York, Friday
+   Wall Street slides into correction
+   S&P 500 falls 3.7% to 6,910; Nasdaq drops 5.3% on Friday.
+
+9. MEXICO . Sinaloa, Friday
+   Mexico captures El Chapo Isidro
+   11 killed as special forces arrest the Sinaloa cartel boss.
+
+== FOOTER ==
+COP31 . Benghazi . Dymer . Bahrain . Cikande . Mercury . West Bank . Nigeria . Markets . Mexico
+
+== FACT DISCIPLINE ==
+- Bahrain: the two destroyed US radars are attributed to Iran's Guards as a
+  claim ("Guards claim"), not reported as fact.
+- Dymer: no casualty number, because sources disagree (14 missing vs 2 dead).
+- Cikande: "dozens missing", because sources give 36 and 37.
+- Markets and Mexico carry a "Friday" dateline; they are 20 Nov, not 22 Nov.
+- Everything above is sourced from research-22nov.md; no facts from memory.
