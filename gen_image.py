@@ -5,6 +5,8 @@ Output: image.png (1024x1024). Deterministic: same bytes on every run.
 
 from PIL import Image, ImageDraw, ImageFont
 
+import math
+
 W = H = 1024
 M = 22  # page margin
 
@@ -499,53 +501,62 @@ def draw_building_symbol(draw, x, y, w, h, building_shape="parliament",
                          symbol="ballot", color=SOFT):
     """Flat institution scene with an emblem, drawn inside (x, y, w, h).
 
-    building_shape is "parliament" (apex roof and finial), "court" (pediment on
-    columns) or "office" (flat slab, window grid). symbol is "ballot" (box),
-    "gavel" (hammer and block) or "thermometer", drawn on a pale seal in the
-    middle of the facade. color paints the building.
+    Every shape is a flat roof slab carried on a row of pillars - never a
+    pitched roof - and the whole facade keeps a margin so nothing is clipped at
+    the edge of the box. building_shape is "parliament" (wide, six pillars),
+    "court" (narrow, four pillars) or "office" (glass slab, window grid). symbol
+    is "ballot" (box), "gavel" (hammer and block) or "thermometer", drawn on a
+    pale seal in the middle of the facade. color paints the building.
     """
-    base = y + h - 1
+    m = max(3.0, min(w, h) * 0.08)
+    ix0, iy0 = x + m, y + m
+    ix1, iy1 = x + w - 1 - m, y + h - 1 - m
+    iw, ih = max(1.0, ix1 - ix0), max(1.0, iy1 - iy0)
     light = _mix(color, PAPER, 0.70)
     shade = _mix(color, INK, 0.35)
 
-    bx0, bx1 = x + w * 0.16, x + w * 0.84
-    body_top = y + h * 0.42
-    draw.rectangle([bx0, body_top, bx1, base], fill=color)
-    draw.rectangle([bx0 - w * 0.04, base - h * 0.05, bx1 + w * 0.04, base],
-                   fill=shade)
+    roof_h = max(2.0, ih * 0.10)
+    plinth_h = max(2.0, ih * 0.09)
 
-    if building_shape == "court":
-        draw.polygon([(bx0 - w * 0.05, body_top),
-                      ((bx0 + bx1) / 2.0, y + h * 0.15),
-                      (bx1 + w * 0.05, body_top)], fill=light)
-        cols, cw = 4, (bx1 - bx0) * 0.13
-        gap = (bx1 - bx0 - cols * cw) / (cols + 1)
-        for i in range(cols):
-            cx0 = bx0 + gap + i * (cw + gap)
-            draw.rectangle([cx0, body_top + h * 0.07, cx0 + cw,
-                            base - h * 0.06], fill=light)
-    elif building_shape == "office":
-        draw.rectangle([bx0 - w * 0.03, body_top - h * 0.08,
-                        bx1 + w * 0.03, body_top], fill=light)
+    if building_shape == "office":
+        bx0, bx1 = ix0 + iw * 0.14, ix1 - iw * 0.14
+        body_top = iy0 + ih * 0.16
+        draw.rectangle([bx0, body_top, bx1, iy1 - plinth_h], fill=color)
+        draw.rectangle([bx0 - iw * 0.04, body_top - roof_h,
+                        bx1 + iw * 0.04, body_top], fill=shade)
+        draw.rectangle([bx0 - iw * 0.02, iy1 - plinth_h, bx1 + iw * 0.02, iy1],
+                       fill=shade)
         cols, rows = 4, 3
-        ww = (bx1 - bx0) / (cols * 2 + 1)
-        wh = (base - body_top - h * 0.10) / (rows * 2 - 1)
+        pad_x, pad_y = (bx1 - bx0) * 0.10, ih * 0.05
+        cell_w = (bx1 - bx0 - 2 * pad_x) / cols
+        cell_h = (iy1 - plinth_h - body_top - 2 * pad_y) / rows
         for r in range(rows):
             for c in range(cols):
-                wx = bx0 + ww * (1 + c * 2)
-                wy = body_top + h * 0.05 + r * wh * 2
-                draw.rectangle([wx, wy, wx + ww, wy + wh], fill=light)
+                wx = bx0 + pad_x + c * cell_w + cell_w * 0.18
+                wy = body_top + pad_y + r * cell_h + cell_h * 0.20
+                draw.rectangle([wx, wy, wx + cell_w * 0.64,
+                                wy + cell_h * 0.60], fill=light)
     else:
-        draw.polygon([(bx0 - w * 0.05, body_top),
-                      ((bx0 + bx1) / 2.0, y + h * 0.14),
-                      (bx1 + w * 0.05, body_top)], fill=light)
-        mid = (bx0 + bx1) / 2.0
-        draw.rectangle([mid - w * 0.02, y + h * 0.06, mid + w * 0.02,
-                        y + h * 0.14], fill=shade)
+        wide = building_shape == "parliament"
+        inset = iw * (0.05 if wide else 0.16)
+        bx0, bx1 = ix0 + inset, ix1 - inset
+        body_top = iy0 + ih * (0.30 if wide else 0.36)
+        n = 6 if wide else 4
+        draw.rectangle([bx0 - iw * 0.03, body_top - roof_h,
+                        bx1 + iw * 0.03, body_top], fill=shade)
+        gap = (bx1 - bx0) / n
+        pw = gap * 0.52
+        for i in range(n):
+            px0 = bx0 + i * gap + (gap - pw) / 2
+            draw.rectangle([px0, body_top, px0 + pw, iy1 - plinth_h],
+                           fill=color)
+        draw.rectangle([bx0, body_top, bx1, body_top + ih * 0.07], fill=light)
+        draw.rectangle([bx0 - iw * 0.02, iy1 - plinth_h, bx1 + iw * 0.02, iy1],
+                       fill=shade)
 
-    cx = (bx0 + bx1) / 2.0
-    cy = body_top + (base - h * 0.05 - body_top) * 0.5
-    r = min((bx1 - bx0) * 0.30, (base - body_top - h * 0.05) * 0.42)
+    cx = (ix0 + ix1) / 2.0
+    cy = (iy0 + iy1) / 2.0 + ih * 0.08
+    r = min(iw * 0.30, ih * 0.34)
     s = r * 1.25
     draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=PAPER,
                  outline=shade, width=max(1, int(r * 0.10)))
@@ -624,20 +635,30 @@ def draw_sport_vehicle(draw, x, y, w, h, kind="football", team_color=ACCENT,
                 bx0 = x + i * w * 0.25
                 draw.rectangle([bx0, y, bx0 + w * 0.25 - 1, base],
                                fill=grass_light)
-        draw.rectangle([x + w * 0.04, y + h * 0.04, x + w * 0.96, base - h * 0.04],
-                       outline=PAPER, width=max(1, int(h * 0.022)))
-        draw.line([(x + w * 0.5, y + h * 0.04), (x + w * 0.5, base - h * 0.04)],
+        inset = max(1, min(w, h) * 0.06)
+        draw.rectangle([x + inset, y + inset, x + w - 1 - inset,
+                        base - inset], outline=PAPER,
+                       width=max(1, int(h * 0.022)))
+        draw.line([(x + w * 0.5, y + inset), (x + w * 0.5, base - inset)],
                   fill=PAPER, width=max(1, int(h * 0.022)))
-        cr = h * 0.16
+        cr = h * 0.14
         cx, cy = x + w * 0.5, y + h * 0.50
         draw.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], outline=PAPER,
                      width=max(1, int(h * 0.022)))
-        br = min(w, h) * 0.17
-        bx, by = x + w * 0.66, base - h * 0.24
-        draw.ellipse([bx - br, by - br, bx + br, by + br], fill=PAPER,
+
+        # white ball with a single black pentagon, kept clear of the edges
+        margin = max(2.0, min(w, h) * 0.10) + max(1, int(h * 0.022))
+        br = min(w, h) * 0.15
+        br = min(br, (w - 2 * margin) / 2, (h - 2 * margin) / 2)
+        bx = min(max(x + w * 0.68, x + margin + br), x + w - margin - br)
+        by = min(max(base - h * 0.22, y + margin + br), base - margin - br)
+        draw.ellipse([bx - br, by - br, bx + br, by + br], fill=(255, 255, 255),
                      outline=INK, width=max(1, int(br * 0.10)))
-        draw.polygon([(bx, by - br * 0.42), (bx + br * 0.55, by + br * 0.34),
-                      (bx - br * 0.55, by + br * 0.34)], fill=team_color)
+        pr = br * 0.46
+        panel = [(bx + pr * math.cos(math.radians(-90 + 72 * i)),
+                  by + pr * math.sin(math.radians(-90 + 72 * i)))
+                 for i in range(5)]
+        draw.polygon(panel, fill=INK)
 
     if score:
         f = font(SERIF_BLACK, max(1, int(h * 0.20)))
