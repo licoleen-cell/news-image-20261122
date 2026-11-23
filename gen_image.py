@@ -909,7 +909,7 @@ D_LEADS = [
      "At Benghazi naval base; 10 lightly wounded, officials say.",
      "ship", ""),
     ("BAHRAIN", "Sitra", "BAHRAIN SAYS IRAN STRUCK PLANT",
-     "IRGC: Al-Riffa and Awali.", "fire", "CLAIM"),
+     "", "fire", "CLAIM"),
 ]
 
 
