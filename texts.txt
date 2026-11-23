@@ -1,64 +1,88 @@
 THE WORLD — SUNDAY 22 NOVEMBER 2026
 Every string rendered into image.png, in reading order.
+18 stories in three tiers: 3 main, 7 medium, 8 briefs.
 
 == MASTHEAD ==
-THE WORLD
 VOL. XII . NO. 4,182
+THE WORLD
 LATE EDITION
 SUNDAY 22 NOVEMBER 2026
 
-== LEAD ==
+== NUMBERS RAIL ==
+Label : THE DAY IN NUMBERS
+Cells : 2 WOUNDED, BAHRAIN
+        24 DEAD, NIGERIA
+        3 DEAD, CIKANDE
+        11 DEAD, MEXICO
+        9 SHOT, CALIFORNIA
+        8 YEARS, MERCURY
+
+== LEAD (MAIN 1 of 3) ==
 Kicker : CLIMATE SUMMIT COLLAPSES
 Headline: COP31 collapses without a deal as Europe holds firm
-Deck    : Antalya talks close two days late and empty-handed after the EU bloc
-          refuses to sign a final text that never names coal, oil or gas.
-Caption : Antalya, Turkey: the summit venue where talks ran past deadline.
-Artwork : stylised locator globe with a red pin on Antalya.
+Deck    : Antalya talks close two days late and empty-handed after the EU bloc refuses to sign a final text that never names coal, oil or gas.
+Artwork : locator globe with a red pin and leader line on Antalya.
 
-== GRID (3 x 3) ==
-1. LIBYA . Benghazi
+== MAIN STORIES 2-3 ==
+2. LIBYA . BENGHAZI  (no tag: attributed to "officers say")
    Sea drone hits Russian warship
    Libyan officers say a suspected Ukrainian drone struck it.
-
-2. UKRAINE . Dymer
-   Russian drone hits Kyiv apartment block
-   Rescue teams search the rubble in Dymer, near the capital.
-
-3. GULF . Manama
+3. BAHRAIN . SITRA  (CLAIM tag on the radar sentence)
    Iran projectile hits Bahrain industrial site
    Two wounded at Sitra; Iran's Guards claim two US radars hit.
 
-4. INDONESIA . Cikande
+== MEDIUM STORIES (2 rows x 4 cells) ==
+4. UKRAINE . DYMER
+   Russian drone hits Kyiv apartment block
+   Rescue teams search the rubble in Dymer, near the capital.
+5. CIKANDE  (CONFIRMED)
    Factory fire kills three in Banten
    Blaze at a candy plant in Cikande leaves dozens missing.
-
-5. SPACE . Mercury
-   BepiColombo reaches orbit around Mercury
-   European-Japanese probe arrives after an eight-year voyage.
-
-6. WEST BANK . Ramallah
+6. WEST BANK . RAMALLAH
    Settlers burn cars across West Bank
    Israel opens a probe into arson in four villages.
-
-7. NIGERIA . Bayelsa
+7. NIGERIA . BAYELSA  (CONFIRMED)
    Boat capsize kills 24 in Nigeria
    At least 24 died; the vessel carried mourners to a funeral.
-
-8. MARKETS . New York, Friday
-   Wall Street slides into correction
-   S&P 500 falls 3.7% to 6,910; Nasdaq drops 5.3% on Friday.
-
-9. MEXICO . Sinaloa, Friday
+8. MEXICO  (FRIDAY tag, 19pt red)
    Mexico captures El Chapo Isidro
    11 killed as special forces arrest the Los Mazatlecos boss.
+9. SPARTA II
+   Russian ship ablaze in Baltic after drone hit
+   Finland says Ukraine likely behind strike; 16 crew evacuated.
+10. HORMUZ . OMAN
+    Two tankers hit in Strait of Hormuz
+    UKMTO says unknown projectiles struck vessels near Oman; no casualties.
+
+== TAG LEGEND (row 2, fourth cell) ==
+HOW TO READ THE TAGS
+CLAIM     one side's account, not verified
+CONFIRMED two or more independent sources
+FRIDAY    dated Friday 20 Nov; markets shut
+
+== BRIEFS (8 one-line items, two columns) ==
+IN BRIEF
+HOUTHIS      Houthis claim strike on Saudi refinery  (CLAIM)
+SUDAN        Drones hit Khartoum homes and UN building
+SOUTH SUDAN  Raid on cattle camp kills civilians in South Sudan
+UKRAINE      Kushner: Moscow open to NATO-style Ukraine guarantees  (CLAIM)
+BOLSONARO    Bolsonaro stable in intensive care
+CALIFORNIA   9 shot at California concert; 1 critical
+BEPI COLOMBO BepiColombo enters Mercury orbit after 8-year trip
+MARKETS      Wall Street: S&P -3.7%, Nasdaq -5.3%  (FRIDAY)
 
 == FOOTER ==
-COP31 . Benghazi . Dymer . Bahrain . Cikande . Mercury . West Bank . Nigeria . Markets . Mexico
+THREE MAIN STORIES . SEVEN MEDIUM REPORTS . EIGHT BRIEFS
+PAGE ONE
 
 == FACT DISCIPLINE ==
 - Bahrain: the two destroyed US radars are attributed to Iran's Guards as a
-  claim ("Guards claim"), not reported as fact.
+  claim ("Guards claim"), marked CLAIM.
+- Libya: "suspected Ukrainian drone" keeps the source's qualification.
 - Dymer: no casualty number, because sources disagree (14 missing vs 2 dead).
 - Cikande: "dozens missing", because sources give 36 and 37.
-- Markets and Mexico carry a "Friday" dateline; they are 20 Nov, not 22 Nov.
-- Everything above is sourced from research-22nov.md; no facts from memory.
+- Mexico and Markets carry a FRIDAY tag; they are 20 Nov, not 22 Nov.
+- Sudan and South Sudan carry no casualty figure, because sources conflict.
+- Houthi refinery strike and the Kushner account are marked CLAIM.
+- Every number in the rail is a figure two or more sources agree on.
+- Everything above is sourced from claims-22nov-variantC.md; no new facts.
