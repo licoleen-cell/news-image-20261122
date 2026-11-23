@@ -264,12 +264,12 @@ def lead(draw, img, top, bottom):
 
 
 STORIES = [
-    ("LIBYA", "Benghazi", "Sea drone hits Russian warship",
-     "Libyan officers say a suspected Ukrainian drone struck it."),
-    ("UKRAINE", "Dymer", "Russian drone hits Kyiv apartment block",
-     "Rescue teams search the rubble in Dymer, near the capital."),
-    ("GULF", "Manama", "Iran projectile hits Bahrain industrial site",
-     "Two wounded at Sitra; Iran's Guards claim two US radars hit."),
+    ("LIBYA", "Benghazi", "Suspected drone hits Russian warship",
+     "At Benghazi naval base; 10 lightly wounded, officials say."),
+    ("UKRAINE", "Dymer", "Drone hits Dymer, near Kyiv",
+     "At least 3 killed."),
+    ("GULF", "Manama", "Bahrain says Iran struck plant",
+     "IRGC claims the strike."),
     ("INDONESIA", "Cikande", "Factory fire kills three in Banten",
      "Blaze at a candy plant in Cikande leaves dozens missing."),
     ("SPACE", "Mercury", "BepiColombo reaches orbit around Mercury",
@@ -668,7 +668,7 @@ def draw_sport_vehicle(draw, x, y, w, h, kind="football", team_color=ACCENT,
 
 
 # ---------------------------------------------------------------- variant D
-# Frame only: 18 real stories, 2 open slots left as placeholders.
+# Frame only: 18 real stories, no open slots.
 
 D_NUMBERS = [
     ("12", "AT LEAST 12 CARS BURNED"),
@@ -883,12 +883,11 @@ D_LEADS = [
     ("COP31", "Antalya", "CLIMATE TALKS END WITH NO DEAL",
      "Summit closes two days late; no final text names coal, oil or gas.",
      "building", ""),
-    ("LIBYA", "Benghazi", "SEA DRONE HITS RUSSIAN WARSHIP",
-     "Suspected strike on a base ship; 10 lightly wounded, officers say.",
+    ("LIBYA", "Benghazi", "SUSPECTED DRONE HITS RUSSIAN WARSHIP",
+     "At Benghazi naval base; 10 lightly wounded, officials say.",
      "ship", ""),
-    ("BAHRAIN", "Sitra", "IRAN PROJECTILE HITS PLANT",
-     "Two wounded at an industrial site; Guards claim two US radars hit.",
-     "fire", "CLAIM"),
+    ("BAHRAIN", "Sitra", "BAHRAIN SAYS IRAN STRUCK PLANT",
+     "IRGC claims the strike.", "fire", "CLAIM"),
 ]
 
 
@@ -943,12 +942,12 @@ def d_leads(draw, y):
 
 
 D_MIDS = [
-    ("UKRAINE", "Drone hits Kyiv flat block", "At least 3 die in Dymer.", ""),
-    ("FOOTBALL", "Liverpool 4-0 Man Utd", "Rout in the late kick-off.", ""),
-    ("FOOTBALL", "Barcelona 3-2 Villarreal", "Late winner at the Camp Nou.", ""),
-    ("NFL", "Dallas 51-30 Tennessee", "Cowboys pull away after half.", ""),
-    ("NFL", "Kansas City 34-7 Arizona", "Chiefs defence shuts the door.", ""),
-    ("NFL", "Buffalo 26-9 Miami", "Bills grind out a division win.", ""),
+    ("UKRAINE", "Dymer, near Kyiv", "At least 3 killed.", ""),
+    ("FOOTBALL", "Liverpool 4-0 Man Utd", "4-0, kick-off 16:30 UTC.", ""),
+    ("FOOTBALL", "Barcelona 3-2 Villarreal", "3-2, kick-off 13:00 UTC.", ""),
+    ("NFL", "Dallas 51-30 Tennessee", "51-30, kick-off 18:00 UTC.", ""),
+    ("NFL", "Kansas City 34-7 Arizona", "34-7, kick-off 18:00 UTC.", ""),
+    ("NFL", "Buffalo 26-9 Miami", "26-9, kick-off 18:00 UTC.", ""),
     ("UKRAINE", "Russia fires 186 drones", "161 downed, Kyiv says.", ""),
     ("WEST BANK", "Settlers burn 12 cars", "Four villages hit overnight.",
      "REPORTED"),
@@ -991,37 +990,59 @@ def d_mids(draw, y, cols=5):
 
 
 D_LIST = [
-    ("HONG KONG", "98.79% turnout, polls shut 18:00", "REPORTED"),
+    ("HONG KONG", "98.79% turnout, polls shut 18:00 HKT (10:00 UTC)", "REPORTED"),
     ("NEPAL", "PM Balendra Shah lands in Delhi", ""),
     ("F1", "Verstappen wins, finishes 05:50 UTC", ""),
-    ("USA", "Strathmore wildfire, 03:30 UTC", ""),
+    ("USA", "Strathmore shooting, 9 shot at concert, ~03:30 UTC", ""),
     ("NBA", "Wembanyama 50 points, 18 rebounds", ""),
-    ("[CERITA 19]", "open slot, text not written", ""),
-    ("[CERITA 20]", "open slot, text not written", ""),
 ]
 
 
 def d_list(draw, y, cols=2):
-    """Seven short items at 19pt, two columns, one line each."""
+    """Short items at 19pt, two columns. A text too long for the rest of its
+    first line drops to its own line instead of being clipped or crowded."""
     gap = 16
     col_w = (W - 2 * M - gap) / cols
     kf = font(SERIF_BOLD, 12)
     tf = font(SERIF, 19)
+    tf_lh = 22
     tracked(draw, (M, y), "IN BRIEF", font(SERIF_BOLD, 10), SOFT, tracking=1.2)
     y += 14
     half = (len(D_LIST) + 1) // 2
+
+    def kick_w(kick):
+        return sum(text_w(draw, c, kf) + 1.0 for c in kick) - 1.0
+
+    def layout(kick, text):
+        """(offset of the text block from the kicker line, lines)."""
+        if text_w(draw, text, tf) <= col_w - kick_w(kick) - 6:
+            return -2, [text]
+        return tf_lh - 3, wrap(draw, text, tf, col_w)
+
+    def item_h(item):
+        dy, lines = layout(item[0], item[1])
+        h = dy + 2 + len(lines) * tf_lh
+        if item[2]:
+            h += 16
+        return max(h, 26)
+
     row_y = [y]
     for i in range(half):
-        item = D_LIST[i]
-        row_y.append(row_y[-1] + (36 if item[2] else 26))
+        pair = [D_LIST[i]] + ([D_LIST[i + half]] if i + half < len(D_LIST) else [])
+        row_y.append(row_y[-1] + max(item_h(it) for it in pair))
     for i, (kick, text, tag) in enumerate(D_LIST):
         col, row = (0, i) if i < half else (1, i - half)
         x0 = M + col * (col_w + gap)
         yy = row_y[row]
         kx = tracked(draw, (x0, yy), kick, kf, INK, tracking=1.0)
-        draw.text((kx + 5, yy - 2), text, font=tf, fill=SOFT)
+        dy, lines = layout(kick, text)
+        ty = yy + dy
+        for n, ln in enumerate(lines):
+            tx = kx + 5 if (n == 0 and dy < 0) else x0
+            draw.text((tx, ty), ln, font=tf, fill=SOFT)
+            ty += tf_lh
         if tag:
-            d_tag(draw, (x0, yy + 17), tag)
+            d_tag(draw, (x0, ty + 1), tag)
     return row_y[half] - 4
 
 
@@ -1065,7 +1086,7 @@ def d_datecheck(draw, y):
     return y + h
 
 
-D_FOOTER_STORIES = 20
+D_FOOTER_STORIES = 18
 
 
 def d_footer(draw, y):
@@ -1073,7 +1094,7 @@ def d_footer(draw, y):
     rule(draw, y, M, W - M, 3)
     f = font(SERIF_BOLD, 12)
     left = "THE WORLD . SUNDAY 22 NOVEMBER 2026"
-    right = "%d STORIES . 2 SLOTS HELD" % D_FOOTER_STORIES
+    right = "%d STORIES" % D_FOOTER_STORIES
     draw.text((M, y + 7), left, font=f, fill=INK)
     draw.text((W - M - text_w(draw, right, f), y + 7), right, font=f, fill=INK)
     return y + 24
