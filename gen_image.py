@@ -580,6 +580,72 @@ def draw_building_symbol(draw, x, y, w, h, building_shape="parliament",
                      width=max(1, int(s * 0.05)))
 
 
+GRASS = (86, 122, 78)
+TRACK = (150, 146, 138)
+
+
+def draw_sport_vehicle(draw, x, y, w, h, kind="football", team_color=ACCENT,
+                       score="4-0"):
+    """Flat sport or transport scene with a scoreline, inside (x, y, w, h).
+
+    kind "football" draws a green pitch with centre circle and a ball; "racing"
+    draws a grey track with lane lines and a car. team_color paints the ball
+    panel accent and the car body; score is printed large in team_color at the
+    top of the scene.
+    """
+    base = y + h - 1
+    if kind == "racing":
+        gray = TRACK
+        draw.rectangle([x, y, x + w - 1, base], fill=gray)
+        lane = _mix(gray, INK, 0.45)
+        inset = max(1, h * 0.06)
+        draw.rectangle([x + inset, y + inset, x + w - 1 - inset,
+                        base - inset], outline=PAPER,
+                       width=max(1, int(h * 0.03)))
+        for i in range(3):
+            ty = y + h * (0.30 + i * 0.20)
+            draw.line([(x + inset, ty), (x + w - 1 - inset, ty)],
+                      fill=lane, width=max(1, int(h * 0.02)))
+        body_y0, body_y1 = y + h * 0.40, y + h * 0.62
+        bx0, bx1 = x + w * 0.18, x + w * 0.72
+        draw.rectangle([bx0, body_y0, bx1, body_y1], fill=team_color)
+        draw.polygon([(bx0 + w * 0.20, body_y0), (bx0 + w * 0.34, y + h * 0.26),
+                      (bx1 - w * 0.16, y + h * 0.26), (bx1 - w * 0.04, body_y0)],
+                     fill=_mix(team_color, PAPER, 0.55))
+        for wx in (bx0 + w * 0.06, bx1 - w * 0.14):
+            r = h * 0.10
+            draw.ellipse([wx, body_y1 - r * 0.4, wx + r * 2, body_y1 + r * 1.6],
+                         fill=INK)
+    else:
+        draw.rectangle([x, y, x + w - 1, base], fill=GRASS)
+        grass_light = _mix(GRASS, PAPER, 0.16)
+        for i in range(4):
+            if i % 2 == 0:
+                bx0 = x + i * w * 0.25
+                draw.rectangle([bx0, y, bx0 + w * 0.25 - 1, base],
+                               fill=grass_light)
+        draw.rectangle([x + w * 0.04, y + h * 0.04, x + w * 0.96, base - h * 0.04],
+                       outline=PAPER, width=max(1, int(h * 0.022)))
+        draw.line([(x + w * 0.5, y + h * 0.04), (x + w * 0.5, base - h * 0.04)],
+                  fill=PAPER, width=max(1, int(h * 0.022)))
+        cr = h * 0.16
+        cx, cy = x + w * 0.5, y + h * 0.50
+        draw.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], outline=PAPER,
+                     width=max(1, int(h * 0.022)))
+        br = min(w, h) * 0.17
+        bx, by = x + w * 0.66, base - h * 0.24
+        draw.ellipse([bx - br, by - br, bx + br, by + br], fill=PAPER,
+                     outline=INK, width=max(1, int(br * 0.10)))
+        draw.polygon([(bx, by - br * 0.42), (bx + br * 0.55, by + br * 0.34),
+                      (bx - br * 0.55, by + br * 0.34)], fill=team_color)
+
+    if score:
+        f = font(SERIF_BLACK, max(1, int(h * 0.20)))
+        tw = text_w(draw, score, f)
+        draw.text((x + (w - tw) / 2.0, y + h * 0.055), score, font=f,
+                  fill=team_color)
+
+
 def build():
     img = Image.new("RGB", (W, H), PAPER)
     draw = ImageDraw.Draw(img)
