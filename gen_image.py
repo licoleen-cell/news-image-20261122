@@ -420,9 +420,74 @@ def draw_fire_smoke(draw, x, y, w, h, fire_color, smoke_h, building=True):
     for i in range(n):
         t = (i + 1) / n
         r = w * (0.075 + 0.055 * t)
-        cy = min(y + r, base - fire_h - t * smoke_h)
+        cy = min(y + r + 1, base - fire_h - t * smoke_h)
         ox = t * w * 0.10
         draw.ellipse([fx - r + ox, cy - r, fx + r + ox, cy + r], fill=SMOKE)
+
+
+SHIP = (58, 60, 66)
+DECK = (128, 124, 116)
+
+
+def draw_ship(draw, x, y, w, h, sea_color, fire=False, smoke=False,
+              ship_type="warship"):
+    """Flat sea and vessel scene, drawn inside (x, y, w, h).
+
+    The lower two-fifths are sea in sea_color; the vessel sits on the waterline
+    as a "warship" (low, pointed bow, gun turret) or a "cargo" ship (tall
+    container stacks). fire and smoke add flames and a smoke plume amidships.
+    """
+    base = y + h - 1
+    water_y = int(y + h * 0.60)
+
+    def rect(x0, y0, x1, y1, fill):
+        draw.rectangle([min(x0, x1 - 1), min(y0, y1 - 1),
+                        max(x0, x1 - 1), max(y0, y1 - 1)], fill=fill)
+
+    rect(x, water_y, x + w, base + 1, sea_color)
+
+    hull_h = max(1, min(int(h * 0.13), int(h * 0.33)))
+    hull_y = water_y - hull_h
+    hl, hr = x + w * 0.10, x + w * 0.90
+    if ship_type == "cargo":
+        hull = [(hl, hull_y), (hr, hull_y), (hr - w * 0.02, water_y),
+                (hl + w * 0.03, water_y)]
+    else:
+        hull = [(hl, hull_y), (hr - w * 0.12, hull_y), (hr, water_y - 1),
+                (hl + w * 0.03, water_y)]
+    draw.polygon(hull, fill=SHIP)
+
+    if ship_type == "cargo":
+        cw, ch = w * 0.16, h * 0.16
+        cx = hl + w * 0.08
+        for _ in range(3):
+            rect(cx, hull_y - ch, cx + cw, hull_y, DECK)
+            rect(cx + cw * 0.10, hull_y - ch * 0.55, cx + cw * 0.90, hull_y, SHIP)
+            cx += cw * 1.18
+        funnel_x, funnel_top = hl + w * 0.72, hull_y - h * 0.26
+        rect(funnel_x, funnel_top, funnel_x + w * 0.07, hull_y, SHIP)
+    else:
+        deck_y = hull_y - h * 0.07
+        rect(hl + w * 0.22, deck_y, hl + w * 0.62, hull_y, DECK)
+        rect(hl + w * 0.44, deck_y - h * 0.09, hl + w * 0.54, deck_y, SHIP)
+        rect(hl + w * 0.60, deck_y - h * 0.10, hl + w * 0.68, deck_y, SHIP)
+        funnel_x, funnel_top = hl + w * 0.34, deck_y - h * 0.16
+        rect(funnel_x, funnel_top, funnel_x + w * 0.06, deck_y, SHIP)
+
+    fire_cx = x + w * 0.5
+    fh = min(h * 0.20, hull_y - y)
+    if fire:
+        draw.polygon([(fire_cx - w * 0.07, hull_y), (fire_cx, hull_y - fh),
+                      (fire_cx + w * 0.07, hull_y)], fill=FLAME)
+        draw.polygon([(fire_cx - w * 0.13, hull_y), (fire_cx - w * 0.06,
+                      hull_y - fh * 0.55), (fire_cx + w * 0.01, hull_y)],
+                     fill=FLAME)
+    if smoke:
+        for i in range(4):
+            r = min(w * (0.05 + 0.02 * i), max(1.0, (hull_y - y) / 2 - 1))
+            cy = max(y + r + 1, hull_y - h * 0.24 - i * h * 0.11)
+            cx = fire_cx + w * 0.04 * i
+            draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=SMOKE)
 
 
 def build():
