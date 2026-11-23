@@ -70,13 +70,18 @@ India vs NZ Test 1 Wellington hari ke-4 (India declare 720/9 — Pant 128,
 Rahul 136 — unggul 352, NZ 119/2), Paus Leo XIV (makan siang dengan sekitar
 1.300 orang miskin di Aula Paulus VI Vatikan, Minggu 22 Nov, Hari Orang Miskin
 Sedunia ke-10), Hong Kong (pemilihan subsektor Komite Pemilihan 2026 ditutup
-18:00 HKT, 5.640 dari 5.709 pemilih, partisipasi 98,79% — REPORTED).
+18:00 HKT, 5.640 dari 5.709 pemilih, partisipasi 98,79% — REPORTED),
+Nepal (PM Balendra Shah tiba di New Delhi Minggu 22 Nov untuk kunjungan
+kenegaraan 2 hari, kunjungan bilateral pertamanya sejak menjabat Maret 2026,
+bertemu Menlu Jaishankar — JANGAN pertemuan dengan Modi, itu Senin 23 Nov).
 DIPAKAI (keputusan lek 17:53, 3): Verstappen, Strathmore California,
 Wembanyama (50 poin, 18 rebound, 5 blok, Spurs 114-91 Pelicans,
 tipoff 01:00 UTC Minggu 22 Nov). Tulis JAM UTC-nya, JANGAN kata "Saturday".
 DITAHAN (JANGAN DIPAKAI sampai lek kirim hasil cek): Sudan Khartoum,
 South Sudan, California (selain Strathmore).
-LANTAI CERITA: 20. SLOT PLACEHOLDER = 20 - 17 = 3 slot. (Satu angka: 3.)
+LANTAI CERITA: 20. SLOT PLACEHOLDER = 20 - 18 = 2 slot. (Satu angka: 2.)
+CHECKPOINT 19:30 WIB: satu render kerangka layout (png, kasar gak papa,
+pakai placeholder) + commit/push. Kalau belum ada, lapor jam itu juga.
 POLISH TEMPLATE 1+2 DIBATALIN (perintah lek 17:40) — pakai yang ada.
 PERBAIKAN KECIL TEMPLATE 3+4 SELESAI (commit 573276f).
 SEBELUM BUILD FINAL: grep "[CERITA" HARUS 0 hasil (tempel outputnya).

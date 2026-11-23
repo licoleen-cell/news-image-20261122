@@ -130,6 +130,12 @@ Aturan: 2-3 warna datar per adegan. Tidak ada foto, tidak ada gambar hasil salin
   Minggu 22 Nov). Tulis JAM UTC-nya, JANGAN kata "Saturday".
 - TOTAL: 14 bersih + 3 dipakai = 17. SLOT PLACEHOLDER = 20 - 17 = 3 slot.
   (Satu angka: 3.)
+- BATCH 5 (18:07): PM Nepal Balendra Shah tiba di New Delhi Minggu 22 Nov
+  untuk kunjungan kenegaraan 2 hari, kunjungan bilateral pertamanya sejak
+  menjabat Maret 2026, bertemu Menlu Jaishankar. JANGAN masukin pertemuan
+  dengan Modi (itu Senin 23 Nov).
+  TOTAL BARU: 15 bersih + 3 dipakai = 18. SLOT PLACEHOLDER = 20 - 18 = 2 slot.
+  (Satu angka: 2.)
 - POLISH TEMPLATE 1+2 DIBATALIN (perintah lek 17:40) — pakai yang ada.
 - PERBAIKAN KECIL TEMPLATE 3+4 SELESAI (commit 573276f, push e420695f):
   bola = lingkaran putih + pentagon hitam, gedung = atap datar + pilar,
