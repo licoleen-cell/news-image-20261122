@@ -490,6 +490,96 @@ def draw_ship(draw, x, y, w, h, sea_color, fire=False, smoke=False,
             draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=SMOKE)
 
 
+def _mix(color, target, t):
+    return tuple(int(round(color[i] + (target[i] - color[i]) * t))
+                 for i in range(3))
+
+
+def draw_building_symbol(draw, x, y, w, h, building_shape="parliament",
+                         symbol="ballot", color=SOFT):
+    """Flat institution scene with an emblem, drawn inside (x, y, w, h).
+
+    building_shape is "parliament" (apex roof and finial), "court" (pediment on
+    columns) or "office" (flat slab, window grid). symbol is "ballot" (box),
+    "gavel" (hammer and block) or "thermometer", drawn on a pale seal in the
+    middle of the facade. color paints the building.
+    """
+    base = y + h - 1
+    light = _mix(color, PAPER, 0.70)
+    shade = _mix(color, INK, 0.35)
+
+    bx0, bx1 = x + w * 0.16, x + w * 0.84
+    body_top = y + h * 0.42
+    draw.rectangle([bx0, body_top, bx1, base], fill=color)
+    draw.rectangle([bx0 - w * 0.04, base - h * 0.05, bx1 + w * 0.04, base],
+                   fill=shade)
+
+    if building_shape == "court":
+        draw.polygon([(bx0 - w * 0.05, body_top),
+                      ((bx0 + bx1) / 2.0, y + h * 0.15),
+                      (bx1 + w * 0.05, body_top)], fill=light)
+        cols, cw = 4, (bx1 - bx0) * 0.13
+        gap = (bx1 - bx0 - cols * cw) / (cols + 1)
+        for i in range(cols):
+            cx0 = bx0 + gap + i * (cw + gap)
+            draw.rectangle([cx0, body_top + h * 0.07, cx0 + cw,
+                            base - h * 0.06], fill=light)
+    elif building_shape == "office":
+        draw.rectangle([bx0 - w * 0.03, body_top - h * 0.08,
+                        bx1 + w * 0.03, body_top], fill=light)
+        cols, rows = 4, 3
+        ww = (bx1 - bx0) / (cols * 2 + 1)
+        wh = (base - body_top - h * 0.10) / (rows * 2 - 1)
+        for r in range(rows):
+            for c in range(cols):
+                wx = bx0 + ww * (1 + c * 2)
+                wy = body_top + h * 0.05 + r * wh * 2
+                draw.rectangle([wx, wy, wx + ww, wy + wh], fill=light)
+    else:
+        draw.polygon([(bx0 - w * 0.05, body_top),
+                      ((bx0 + bx1) / 2.0, y + h * 0.14),
+                      (bx1 + w * 0.05, body_top)], fill=light)
+        mid = (bx0 + bx1) / 2.0
+        draw.rectangle([mid - w * 0.02, y + h * 0.06, mid + w * 0.02,
+                        y + h * 0.14], fill=shade)
+
+    cx = (bx0 + bx1) / 2.0
+    cy = body_top + (base - h * 0.05 - body_top) * 0.5
+    r = min((bx1 - bx0) * 0.30, (base - body_top - h * 0.05) * 0.42)
+    s = r * 1.25
+    draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=PAPER,
+                 outline=shade, width=max(1, int(r * 0.10)))
+
+    if symbol == "ballot":
+        x0, x1 = cx - s * 0.45, cx + s * 0.45
+        yb = cy + s * 0.42
+        yt = yb - s * 0.50
+        draw.rectangle([x0, yt, x1, yb], fill=shade)
+        draw.rectangle([cx - s * 0.20, yt + s * 0.10, cx + s * 0.20,
+                        yt + s * 0.14], fill=PAPER)
+        draw.rectangle([cx - s * 0.16, yt - s * 0.34, cx + s * 0.16,
+                        yt + s * 0.06], fill=PAPER, outline=shade,
+                       width=max(1, int(s * 0.04)))
+    elif symbol == "gavel":
+        draw.rectangle([cx - s * 0.45, cy - s * 0.42, cx + s * 0.10,
+                        cy - s * 0.12], fill=shade)
+        draw.polygon([(cx - s * 0.20, cy - s * 0.12),
+                      (cx - s * 0.08, cy - s * 0.12),
+                      (cx + s * 0.26, cy + s * 0.44),
+                      (cx + s * 0.14, cy + s * 0.44)], fill=shade)
+        draw.rectangle([cx - s * 0.02, cy + s * 0.42, cx + s * 0.46,
+                        cy + s * 0.52], fill=shade)
+    else:
+        draw.rectangle([cx - s * 0.12, cy - s * 0.50, cx + s * 0.12,
+                        cy + s * 0.14], fill=PAPER, outline=shade,
+                       width=max(1, int(s * 0.05)))
+        draw.rectangle([cx - s * 0.06, cy - s * 0.14, cx + s * 0.06,
+                        cy + s * 0.16], fill=ACCENT)
+        draw.ellipse([cx - s * 0.18, cy + s * 0.06, cx + s * 0.18,
+                      cy + s * 0.42], fill=ACCENT, outline=shade,
+                     width=max(1, int(s * 0.05)))
+
+
 def build():
     img = Image.new("RGB", (W, H), PAPER)
     draw = ImageDraw.Draw(img)
