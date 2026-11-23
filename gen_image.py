@@ -968,11 +968,11 @@ def d_leads(draw, y):
 
 D_MIDS = [
     ("UKRAINE", "Dymer, near Kyiv", "At least 3 killed.", ""),
-    ("FOOTBALL", "Liverpool 4-0 Man Utd", "4-0 at 16:30 UTC.", ""),
-    ("FOOTBALL", "Barcelona 3-2 Villarreal", "3-2 at 13:00 UTC.", ""),
-    ("NFL", "Dallas 51-30 Tennessee", "51-30 at 18:00 UTC.", ""),
-    ("NFL", "Kansas City 34-7 Arizona", "34-7 at 18:00 UTC.", ""),
-    ("NFL", "Buffalo 26-9 Miami", "26-9 at 18:00 UTC.", ""),
+    ("FOOTBALL", "Liverpool 4-0 Man Utd", "Kick-off 16:30 UTC.", ""),
+    ("FOOTBALL", "Barcelona 3-2 Villarreal", "Kick-off 13:00 UTC.", ""),
+    ("NFL", "Dallas 51-30 Tennessee", "Kick-off 18:00 UTC.", ""),
+    ("NFL", "Kansas City 34-7 Arizona", "Kick-off 18:00 UTC.", ""),
+    ("NFL", "Buffalo 26-9 Miami", "Kick-off 18:00 UTC.", ""),
     ("UKRAINE", "Russia fires 186 drones", "161 of 186 downed.", ""),
     ("WEST BANK", "Settlers burn 12 cars", "Four villages hit.",
      "REPORTED"),
