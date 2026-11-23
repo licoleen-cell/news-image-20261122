@@ -668,7 +668,7 @@ def draw_sport_vehicle(draw, x, y, w, h, kind="football", team_color=ACCENT,
 
 
 # ---------------------------------------------------------------- variant D
-# Frame only: 17 real stories, 3 open slots left as "[CERITA N]" placeholders.
+# Frame only: 18 real stories, 2 open slots left as placeholders.
 
 D_NUMBERS = [
     ("12", "AT LEAST 12 CARS BURNED"),
