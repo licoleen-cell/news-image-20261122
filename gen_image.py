@@ -499,12 +499,10 @@ def medium(img, draw, top):
     return top + row_top[-1] + row_h[-1]
 
 
-def legend(draw, top):
-    """One horizontal line of tag chips, each with its meaning."""
-    rule(draw, top, M, W - M, 1, HAIR)
-    y = top + 6
+def legend(draw, x, y):
+    """Tag key drawn inline on the IN BRIEF header line."""
     t_f = font(SERIF_COND_BOLD, 9)
-    x = tracked(draw, (M, y + 3), LEGEND_TITLE, t_f, ACCENT, tracking=1.5) + 14
+    x = tracked(draw, (x, y + 3), LEGEND_TITLE, t_f, ACCENT, tracking=1.5) + 14
     body = font(SERIF_COND, 10)
     for tag, col, text in LEGEND:
         w, h = chip(draw, x, y - 1, tag, col, size=8.5)
@@ -512,13 +510,14 @@ def legend(draw, top):
         draw.text((x, y + 1), text, font=body, fill=SOFT)
         x += text_w(draw, text, body) + 18
     assert x <= W - M, "legend overflow"
-    return y + 20
+    return x
 
 
 def briefs(draw, top):
     slug = font(SERIF_COND_BOLD, 10)
-    tracked(draw, (M, top + 2), "IN BRIEF", slug, ACCENT, tracking=1.8)
-    rule(draw, top + 11, M + 62, W - M, 1, RULE)
+    x = tracked(draw, (M, top + 2), "IN BRIEF", slug, ACCENT, tracking=1.8)
+    legend(draw, x + 16, top)
+    rule(draw, top + 17, M, W - M, 1, RULE)
 
     col_gap = 26
     col_w = (W - 2 * M - col_gap) / 2
@@ -526,12 +525,20 @@ def briefs(draw, top):
     text_f = font(SERIF_COND, BRIEF_SIZE)
     TYPE["briefs"] = BRIEF_SIZE
     name_f = font(SERIF_COND_BOLD, 9.5)
-    y = top + 18
-    # row 3 (Markets) is taller so the 19pt FRIDAY tag cannot touch row 2
-    row_tops = [0, BRIEF_ROW, 2 * BRIEF_ROW, 2 * BRIEF_ROW + 29]
+    y = top + 22
+    per_col = 4
+    nrows = min(per_col, len(BRIEFS))
+    # a 19pt FRIDAY tag is ~29px tall, taller than the 17px row pitch, so the
+    # row that carries it gets extra space to keep it clear of the row above
+    friday_rows = {i % per_col for i, b in enumerate(BRIEFS)
+                   if b[2] == "FRIDAY"}
+    row_tops, acc = [], 0
+    for r in range(nrows):
+        row_tops.append(acc)
+        acc += BRIEF_ROW + (10 if r in friday_rows else 0)
 
     for i, (name, text, tag) in enumerate(BRIEFS):
-        c, r = divmod(i, 4)
+        c, r = divmod(i, per_col)
         x0 = M + c * (col_w + col_gap)
         x_end = x0 + col_w
         ry = y + row_tops[r]
@@ -548,7 +555,8 @@ def briefs(draw, top):
         tracked(draw, (x0, ry + 1), name, name_f, INK, tracking=1.2)
         x = x0 + name_w
         if tag:
-            w, h = chip(draw, x_end, ry - 2, tag, ACCENT, size=8.5, right=True)
+            col = {"CLAIM": ACCENT, "CONFIRMED": GREEN}.get(tag, ACCENT)
+            w, h = chip(draw, x_end, ry - 2, tag, col, size=8.5, right=True)
             x_end -= w + 6
         assert x + text_w(draw, text, text_f) <= x_end, (
             "brief overflow: %s" % text)
