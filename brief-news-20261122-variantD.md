@@ -85,6 +85,19 @@ pakai placeholder) + commit/push. Kalau belum ada, lapor jam itu juga.
 POLISH TEMPLATE 1+2 DIBATALIN (perintah lek 17:40) — pakai yang ada.
 PERBAIKAN KECIL TEMPLATE 3+4 SELESAI (commit 573276f).
 SEBELUM BUILD FINAL: grep "[CERITA" HARUS 0 hasil (tempel outputnya).
+PERBAIKAN LAYOUT 4 HAL (perintah lek 18:10, WAJIB):
+1) STRIP ANGKA: label JANGAN nimpa digit, jarak min 4px, label SAMA PERSIS
+   dengan kata headline (contoh: "AT LEAST 12 CARS BURNED").
+2) TIMELINE: label gak boleh ketimpa penanda, teks min 11px, kurangi jadi
+   6-8 kejadian.
+3) HAPUS dari timeline: "06-11 Dymer strike", "00-05 West Bank", "IRGC 04:46".
+   ATURAN: jam gak ada di sumber = gak boleh ditaruh. JAM AMAN: Wembanyama
+   01:00 UTC, India declare ~01:00 UTC, Hong Kong tutup 10:00 UTC,
+   Barcelona 13:00 UTC, Liverpool 16:30 UTC, NFL 18:00 UTC. BOLEH DITAMBAH:
+   Strathmore ~03:30 UTC, Verstappen finish ~05:50 UTC.
+4) ESTONIA → DATE CHECK (keputusan Jumat 20 Nov, diumumkan Minggu 15 Nov,
+   efektif 1 Des).
+CHECKPOINT 20:00 WIB: satu render halaman penuh.
 KANDIDAT (a)-(r) DITAHAN (perintah lek 16:07): JANGAN tambah cerita dari daftar
 (a)-(r) sebelum lek kasih daftar fakta final. Lihat
 plan-news-20261122-variantD.md untuk referensi riset saja.
