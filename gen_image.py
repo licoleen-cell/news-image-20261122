@@ -667,22 +667,445 @@ def draw_sport_vehicle(draw, x, y, w, h, kind="football", team_color=ACCENT,
                   fill=team_color)
 
 
+# ---------------------------------------------------------------- variant D
+# Frame only: 17 real stories, 3 open slots left as "[CERITA N]" placeholders.
+
+D_NUMBERS = [
+    ("12", "AT LEAST 12 CARS BURNED"),
+    ("720/9", "INDIA DECLARE 720/9"),
+    ("4-0", "LIVERPOOL BEAT MAN UTD 4-0"),
+    ("51-30", "DALLAS BEAT TENNESSEE 51-30"),
+    ("50", "WEMBANYAMA SCORES 50"),
+]
+
+
+def d_masthead(draw):
+    f_small = font(SERIF_COND, 10)
+    draw.text((M, 14), "VOL. XII . NO. 4,182", font=f_small, fill=MUTED)
+    right = "LATE EDITION"
+    draw.text((W - M - text_w(draw, right, f_small), 14), right,
+              font=f_small, fill=MUTED)
+
+    title = "THE WORLD"
+    track = 5
+    size = 106
+    f = font(SERIF_BLACK, size)
+    avail = W - 2 * M - 12
+    while text_w(draw, title, f) + track * (len(title) - 1) > avail:
+        size -= 2
+        f = font(SERIF_BLACK, size)
+    cap_h = ink_centered(draw, 28, title, f, INK, track)
+
+    y = 28 + cap_h + 8
+    rule(draw, y, M, W - M, 3)
+    rule(draw, y + 6, M, W - M, 1)
+
+    date_f = font(SERIF_BOLD, 21)
+    dt = "SUNDAY 22 NOVEMBER 2026"
+    dy = y + 14
+    dw = text_w(draw, dt, date_f) + 3.2 * (len(dt) - 1)
+    ink_centered(draw, dy, dt, date_f, INK, 3.2)
+    mid = dy + 4
+    rule(draw, int(mid), M, int((W - dw) / 2) - 12, 1)
+    rule(draw, int(mid), int((W + dw) / 2) + 12, W - M, 1)
+
+    y2 = y + 44
+    rule(draw, y2, M, W - M, 5)
+    return y2 + 5
+
+
+def d_numbers(draw, y):
+    """Five figures from clean facts; each label repeats its headline's words.
+
+    The label sits below the digit's ink box with a 5px gap, so it can never
+    cover the numeral, and it wraps inside its own column.
+    """
+    col = (W - 2 * M) / len(D_NUMBERS)
+    lf = font(SERIF_BOLD, 11)
+    for i, (num, label) in enumerate(D_NUMBERS):
+        cx = M + col * (i + 0.5)
+        size = 44
+        f = font(SERIF_BLACK, size)
+        while text_w(draw, num, f) > col - 12 and size > 26:
+            size -= 1
+            f = font(SERIF_BLACK, size)
+        bb = draw.textbbox((0, 0), num, font=f)
+        draw.text((cx - text_w(draw, num, f) / 2, y - bb[1]), num, font=f,
+                  fill=INK)
+        ly = y + (bb[3] - bb[1]) + 5
+        for ln in wrap(draw, label, lf, col - 8)[:2]:
+            draw.text((cx - text_w(draw, ln, lf) / 2, ly), ln, font=lf,
+                      fill=ACCENT)
+            ly += 14
+        if i:
+            x = M + col * i - 0.5
+            draw.rectangle([x, y + 4, x + 1, y + 52], fill=(206, 201, 190))
+    return y + 62
+
+
+# Only hours that the sources state: nothing is placed by guesswork.
+D_PINS = [
+    (1.0, "01:00 Wembanyama tipoff"),
+    (3.5, "03:30 Strathmore, California"),
+    (5.83, "05:50 Verstappen finish"),
+    (10.0, "10:00 Hong Kong polls shut"),
+    (13.0, "13:00 Barcelona kick-off"),
+    (16.5, "16:30 Liverpool kick-off"),
+    (18.0, "18:00 NFL kick-offs"),
+]
+
+
+def d_timeline(draw, y):
+    """24-hour UTC rail: one marker per source-stated hour, labels kept clear."""
+    x0, x1 = M, W - M
+    span = x1 - x0
+
+    def hx(h):
+        return x0 + span * h / 24.0
+
+    tracked(draw, (x0, y), "SUNDAY 22 NOVEMBER, HOUR BY HOUR IN UTC",
+            font(SERIF_BOLD, 10), ACCENT, tracking=1.2)
+
+    axis = y + 24
+    draw.rectangle([x0, axis, x1 - 1, axis + 1], fill=RULE)
+
+    tick_f = font(SERIF_COND, 8)
+    for h in range(0, 24, 2):
+        tx = hx(h)
+        draw.rectangle([tx, axis + 3, tx, axis + 7], fill=(120, 116, 106))
+        lab = "%02d" % h
+        draw.text((tx - text_w(draw, lab, tick_f) / 2, axis + 9), lab,
+                  font=tick_f, fill=MUTED)
+
+    lab_f = font(SERIF_COND, 11)
+    for i, (h, text) in enumerate(D_PINS):
+        px = hx(h)
+        draw.polygon([(px, axis - 14), (px + 5, axis - 9), (px, axis - 4),
+                      (px - 5, axis - 9)], fill=ACCENT)
+        tw = text_w(draw, text, lab_f)
+        left = min(max(px - tw / 2.0, x0), x1 - tw)
+        ly = axis + 24 + (i % 2) * 15
+        draw.line([(px, axis + 2), (px, ly - 3)], fill=(176, 172, 162),
+                  width=1)
+        draw.text((left, ly - 2), text, font=lab_f, fill=SOFT)
+    return axis + 24 + 15 + 16
+
+
+D_REGIONS = [
+    ("EUROPE", (62, 92, 138)),
+    ("MIDDLE EAST", (168, 112, 46)),
+    ("ASIA", (140, 62, 70)),
+    ("AMERICAS", (72, 110, 84)),
+    ("SPORT", (92, 84, 130)),
+]
+
+
+def d_regions(draw, y):
+    """Flat colour strip: one chip per region covered on the page."""
+    gap = 6
+    chip_w = (W - 2 * M - gap * (len(D_REGIONS) - 1)) / len(D_REGIONS)
+    label_f = font(SERIF_BOLD, 9)
+    for i, (name, color) in enumerate(D_REGIONS):
+        cx = M + i * (chip_w + gap)
+        draw.rectangle([cx, y, cx + chip_w - 1, y + 13], fill=color)
+        tw = text_w(draw, name, label_f) + 1.6 * (len(name) - 1)
+        tx = cx + (chip_w - tw) / 2
+        for ch in name:
+            draw.text((tx, y + 2), ch, font=label_f, fill=PAPER)
+            tx += text_w(draw, ch, label_f) + 1.6
+    return y + 13
+
+
+D_TAG_COLORS = {"CLAIM": ACCENT, "REPORTED": (146, 106, 18)}
+
+
+def d_tag(draw, xy, name):
+    """Small coloured flag; the text stays clear of every other element."""
+    x, y = xy
+    f = font(SERIF_BOLD, 9)
+    label = name
+    tw = text_w(draw, label, f) + 2 * (len(label) - 1)
+    color = D_TAG_COLORS[name]
+    draw.rectangle([x, y, x + tw + 7, y + 12], fill=color)
+    tx = x + 3.5
+    for c in label:
+        draw.text((tx, y + 1), c, font=f, fill=PAPER)
+        tx += text_w(draw, c, f) + 2
+    return x + tw + 7
+
+
+D_MAP_PINS = [
+    (1, 30.7, 36.9, "COP31 ANTALYA"),
+    (2, 20.1, 32.1, "BENGHAZI"),
+    (3, 50.6, 26.15, "SITRA"),
+]
+
+
+def d_map(draw, y, h=58):
+    """Plain world outline with three numbered pins for the lead stories."""
+    x0, x1 = M, W - M
+    w = x1 - x0
+    top = y + 13
+
+    def px(lon):
+        return x0 + (lon + 180) / 360.0 * w
+
+    def py(lat):
+        return top + (78 - lat) / 156.0 * h
+
+    tracked(draw, (x0, y), "WHERE THE DAY HAPPENED", font(SERIF_BOLD, 9),
+            SOFT, tracking=1.2)
+    draw.rectangle([x0, top, x1 - 1, top + h - 1], fill=(232, 240, 246),
+                   outline=(198, 214, 228))
+
+    for poly in CONTINENTS:
+        pts = [(px(lon), py(lat)) for lon, lat in poly]
+        draw.polygon(pts, fill=LAND, outline=LAND_EDGE)
+
+    for n, lon, lat, label in D_MAP_PINS:
+        cx, cy = px(lon), py(lat)
+        r = 7
+        draw.line([(cx, cy), (cx, cy - 10)], fill=ACCENT, width=2)
+        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=ACCENT)
+        f = font(SERIF_BOLD, 10)
+        draw.text((cx - text_w(draw, str(n), f) / 2, cy - 6), str(n),
+                  font=f, fill=PAPER)
+        lf = font(SERIF_BOLD, 9)
+        lw = text_w(draw, label, lf)
+        lx = min(max(cx - lw / 2, x0 + 2), x1 - lw - 2)
+        ly = min(cy + r + 2, top + h - 11)
+        draw.rectangle([lx - 2, ly - 1, lx + lw + 2, ly + 10], fill=(232, 240, 246))
+        draw.text((lx, ly - 1), label, font=lf, fill=SOFT)
+    return top + h
+
+
+D_LEADS = [
+    ("COP31", "Antalya", "CLIMATE TALKS END WITH NO DEAL",
+     "Summit closes two days late; no final text names coal, oil or gas.",
+     "building", ""),
+    ("LIBYA", "Benghazi", "SEA DRONE HITS RUSSIAN WARSHIP",
+     "Suspected strike on a base ship; 10 lightly wounded, officers say.",
+     "ship", ""),
+    ("BAHRAIN", "Sitra", "IRAN PROJECTILE HITS PLANT",
+     "Two wounded at an industrial site; Guards claim two US radars hit.",
+     "fire", "CLAIM"),
+]
+
+
+def d_illustration(draw, box, kind, color=ACCENT):
+    x0, y0, x1, y1 = box
+    w, h = x1 - x0, y1 - y0
+    if kind == "building":
+        draw_building_symbol(draw, x0, y0, w, h, "parliament", "thermometer",
+                             color)
+    elif kind == "ship":
+        draw_ship(draw, x0, y0, w, h, (126, 150, 172), fire=True, smoke=True)
+    else:
+        draw_fire_smoke(draw, x0, y0, w, h, FLAME, h * 0.40)
+
+
+def d_leads(draw, y):
+    """Three lead stories: illustration left, headline and standfirst right."""
+    gap = 10
+    card_w = (W - 2 * M - 2 * gap) / 3
+    art_w = 84
+    txt_w = card_w - art_w - 8
+    hk_f = font(SERIF_BOLD, 10)
+    head_f = font(SERIF_BOLD, 21)
+    sub_f = font(SERIF, 18)
+    sub_lh = int(18 * 1.30)
+    head_lh = int(21 * 1.10)
+
+    tallest = 0
+    for i, (kick, place, head, sub, kind, tag) in enumerate(D_LEADS):
+        x0 = M + i * (card_w + gap)
+        head_lines = wrap(draw, head, head_f, txt_w)[:3]
+        sub_lines = wrap(draw, sub, sub_f, txt_w)[:3]
+        th = 13 + len(head_lines) * head_lh + 4 + len(sub_lines) * sub_lh
+        tallest = max(tallest, th)
+
+    for i, (kick, place, head, sub, kind, tag) in enumerate(D_LEADS):
+        x0 = M + i * (card_w + gap)
+        tx = x0 + art_w + 8
+        d_illustration(draw, (x0, y, x0 + art_w, y + tallest), kind,
+                       (62, 92, 138) if i == 0 else ACCENT)
+        kx = tracked(draw, (tx, y), kick, hk_f, ACCENT, tracking=1.4)
+        px_ = kx + 4
+        draw.text((px_, y + 1), place, font=font(SERIF_COND, 10), fill=MUTED)
+        if tag:
+            tag_w = text_w(draw, tag, font(SERIF_BOLD, 9)) + 2 * (len(tag) - 1)
+            d_tag(draw, (tx + txt_w - tag_w - 7, y), tag)
+        head_lines = wrap(draw, head, head_f, txt_w)[:3]
+        yy = para(draw, (tx, y + 13), head_lines, head_f, INK, head_lh)
+        sub_lines = wrap(draw, sub, sub_f, txt_w)[:3]
+        para(draw, (tx, yy + 4), sub_lines, sub_f, SOFT, sub_lh)
+    return y + tallest
+
+
+D_MIDS = [
+    ("UKRAINE", "Drone hits Kyiv flat block", "At least 3 die in Dymer.", ""),
+    ("FOOTBALL", "Liverpool 4-0 Man Utd", "Rout in the late kick-off.", ""),
+    ("FOOTBALL", "Barcelona 3-2 Villarreal", "Late winner at the Camp Nou.", ""),
+    ("NFL", "Dallas 51-30 Tennessee", "Cowboys pull away after half.", ""),
+    ("NFL", "Kansas City 34-7 Arizona", "Chiefs defence shuts the door.", ""),
+    ("NFL", "Buffalo 26-9 Miami", "Bills grind out a division win.", ""),
+    ("UKRAINE", "Russia fires 186 drones", "161 downed, Kyiv says.", ""),
+    ("WEST BANK", "Settlers burn 12 cars", "Four villages hit overnight.",
+     "REPORTED"),
+    ("CRICKET", "India declare 720/9", "Lead 352; NZ 119/2 in reply.", ""),
+    ("VATICAN", "Pope Leo XIV eats with poor", "1,300 guests at the Vatican.",
+     ""),
+]
+
+
+def d_mids(draw, y, cols=5):
+    """Ten medium stories in two rows; only the standfirst length is trimmed."""
+    gap = 12
+    col_w = (W - 2 * M - gap * (cols - 1)) / cols
+    kf = font(SERIF_BOLD, 9)
+    head_f = font(SERIF_BOLD, 19)
+    sub_f = font(SERIF, 18)
+    head_lh = int(19 * 1.10)
+    sub_lh = int(18 * 1.20)
+
+    rows = [D_MIDS[i:i + cols] for i in range(0, len(D_MIDS), cols)]
+    yy = y
+    for r, row in enumerate(rows):
+        tag_h = 16 if any(item[3] for item in row) else 0
+        row_h = 11 + tag_h + 2 * head_lh + 3 + sub_lh + 9
+        for c, (kick, head, sub, tag) in enumerate(row):
+            x0 = M + c * (col_w + gap)
+            tracked(draw, (x0, yy), kick, kf, ACCENT, tracking=1.2)
+            hy = yy + 11
+            if tag:
+                d_tag(draw, (x0, yy + 13), tag)
+                hy = yy + 29
+            head_lines = wrap(draw, head, head_f, col_w)[:2]
+            ny = para(draw, (x0, hy), head_lines, head_f, INK, head_lh)
+            sub_lines = wrap(draw, sub, sub_f, col_w)[:1]
+            para(draw, (x0, ny + 3), sub_lines, sub_f, SOFT, sub_lh)
+        if r == 0:
+            rule(draw, int(yy + row_h - 5), M, W - M, 1, (206, 201, 190))
+        yy += row_h
+    return yy
+
+
+D_LIST = [
+    ("HONG KONG", "98.79% turnout, polls shut 18:00", "REPORTED"),
+    ("NEPAL", "PM Balendra Shah lands in Delhi", ""),
+    ("F1", "Verstappen wins, finishes 05:50 UTC", ""),
+    ("USA", "Strathmore wildfire, 03:30 UTC", ""),
+    ("NBA", "Wembanyama 50 points, 18 rebounds", ""),
+    ("[CERITA 19]", "open slot, text not written", ""),
+    ("[CERITA 20]", "open slot, text not written", ""),
+]
+
+
+def d_list(draw, y, cols=2):
+    """Seven short items at 19pt, two columns, one line each."""
+    gap = 16
+    col_w = (W - 2 * M - gap) / cols
+    kf = font(SERIF_BOLD, 12)
+    tf = font(SERIF, 19)
+    tracked(draw, (M, y), "IN BRIEF", font(SERIF_BOLD, 10), SOFT, tracking=1.2)
+    y += 14
+    half = (len(D_LIST) + 1) // 2
+    row_y = [y]
+    for i in range(half):
+        item = D_LIST[i]
+        row_y.append(row_y[-1] + (36 if item[2] else 26))
+    for i, (kick, text, tag) in enumerate(D_LIST):
+        col, row = (0, i) if i < half else (1, i - half)
+        x0 = M + col * (col_w + gap)
+        yy = row_y[row]
+        kx = tracked(draw, (x0, yy), kick, kf, INK, tracking=1.0)
+        draw.text((kx + 5, yy - 2), text, font=tf, fill=SOFT)
+        if tag:
+            d_tag(draw, (x0, yy + 17), tag)
+    return row_y[half] - 4
+
+
+D_DATES = [
+    ("MEXICO . MARKETS", "Friday 20 Nov"),
+    ("BEPICOLOMBO", "Saturday 21 Nov, 18:24 UTC"),
+    ("SPARTA II", "Saturday 21 Nov, ~06:50 UTC"),
+    ("BOLSONARO", "Friday 20 Nov"),
+    ("CIKANDE", "Saturday 21 Nov, night"),
+    ("NIGERIA", "held, date not confirmed"),
+    ("ESTONIA", "decided Fri 20 Nov, announced Sun 15 Nov, effective 1 Dec"),
+]
+
+
+def d_datecheck(draw, y):
+    """Red box: stories from other days, deliberately kept out of the page."""
+    x0, x1 = M, W - M
+    pad = 7
+    gap = 14
+    hf = font(SERIF_BOLD, 10)
+    of = font(SERIF_BOLD, 12)
+    df = font(SERIF, 11)
+    row_h = 13
+    col_w = (x1 - x0 - pad * 2 - gap) / 2
+    half = 4
+    h = 6 + 14 + 4 + half * row_h + pad
+    draw.rectangle([x0, y, x1 - 1, y + h - 1], fill=(250, 236, 234),
+                   outline=ACCENT, width=2)
+    tracked(draw, (x0 + pad, y + 5), "DATE CHECK . NOT YET 22 NOVEMBER", hf,
+            ACCENT, tracking=1.2)
+    top = y + 6 + 15
+    for i, (name, when) in enumerate(D_DATES):
+        col, row = (0, i) if i < half else (1, i - half)
+        cx = x0 + pad + col * (col_w + gap)
+        yy = top + row * row_h
+        ow = text_w(draw, name, of)
+        draw.text((cx, yy), name, font=of, fill=ACCENT)
+        lines = wrap(draw, when, df, col_w - ow - 8)
+        draw.text((cx + ow + 6, yy + 2), lines[0] if lines else when,
+                  font=df, fill=SOFT)
+    return y + h
+
+
+D_FOOTER_STORIES = 20
+
+
+def d_footer(draw, y):
+    """Bottom rule, paper name and the count of stories on the page."""
+    rule(draw, y, M, W - M, 3)
+    f = font(SERIF_BOLD, 12)
+    left = "THE WORLD . SUNDAY 22 NOVEMBER 2026"
+    right = "%d STORIES . 2 SLOTS HELD" % D_FOOTER_STORIES
+    draw.text((M, y + 7), left, font=f, fill=INK)
+    draw.text((W - M - text_w(draw, right, f), y + 7), right, font=f, fill=INK)
+    return y + 24
+
+
 def build():
     img = Image.new("RGB", (W, H), PAPER)
     draw = ImageDraw.Draw(img)
 
-    top = masthead(draw)
-    lead(draw, img, LEAD_TOP, LEAD_BOTTOM)
-    rule(draw, LEAD_BOTTOM, M, W - M, 3)
-    rule(draw, LEAD_BOTTOM + 5, M, W - M, 1)
+    y = d_masthead(draw)
+    y = d_numbers(draw, y + 4)
+    y = d_timeline(draw, y + 8)
+    y += 5
+    rule(draw, y, M, W - M, 1, (150, 146, 136))
+    y = d_regions(draw, y + 6)
+    y = d_map(draw, y + 8)
+    y = d_leads(draw, y + 8)
+    y = d_mids(draw, y + 8)
+    y = d_list(draw, y + 6)
+    y = d_datecheck(draw, y + 8)
+    y = d_footer(draw, y + 7)
+    return img, y
 
-    grid(draw, GRID_TOP, FOOTER_Y - 6)
-    footer(draw, FOOTER_Y)
-    return img
+
+def render(path):
+    img, y = build()
+    img.save(path, format="PNG", optimize=True)
+    print("wrote", path, img.size, "frame bottom", y)
 
 
 def main():
-    img = build()
+    img, _ = build()
     img.save("image.png", format="PNG", optimize=True)
     print("wrote image.png", img.size)
 
