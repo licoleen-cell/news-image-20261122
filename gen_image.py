@@ -671,7 +671,7 @@ def draw_sport_vehicle(draw, x, y, w, h, kind="football", team_color=ACCENT,
 # Frame only: 18 real stories, no open slots.
 
 D_NUMBERS = [
-    ("12", "AT LEAST 12 CARS BURNED"),
+    ("12", "AT LEAST 12 CARS BURNED IN WEST BANK"),
     ("720/9", "INDIA DECLARE 720/9"),
     ("4-0", "LIVERPOOL BEAT MAN UTD 4-0"),
     ("186", "RUSSIA FIRES 186 DRONES"),
@@ -974,7 +974,7 @@ D_MIDS = [
     ("NFL", "Kansas City 34-7 Arizona", "Kick-off 18:00 UTC.", ""),
     ("NFL", "Buffalo 26-9 Miami", "Kick-off 18:00 UTC.", ""),
     ("UKRAINE", "Russia fires 186 drones", "161 of 186 downed.", ""),
-    ("WEST BANK", "Settlers burn 12 cars", "Four villages hit.",
+    ("WEST BANK", "Settlers burn at least 12 cars", "Four villages hit.",
      "REPORTED"),
     ("CRICKET", "India declare 720/9", "Lead 352; NZ 119/2.", ""),
     ("VATICAN", "Pope Leo XIV eats with poor", "About 1,300 guests.",
