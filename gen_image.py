@@ -382,6 +382,49 @@ def footer(draw, y):
         x += text_w(draw, c, f) + 1.2
 
 
+FLAME = (211, 84, 22)
+SMOKE = (156, 152, 144)
+CITY = (72, 68, 62)
+
+
+def draw_fire_smoke(draw, x, y, w, h, fire_color, smoke_h, building=True):
+    """Flat scene of flames and a smoke column, drawn inside (x, y, w, h).
+
+    fire_color paints the flames; smoke_h is the height of the smoke column in
+    pixels, measured up from the top of the flames; building adds a simple city
+    block behind the fire.
+    """
+    base = y + h - 1
+    fire_h = min(h * 0.42, w * 0.52)
+    r_top = w * 0.13
+    smoke_h = max(0.0, min(smoke_h, h - fire_h - r_top - 1))
+
+    if building:
+        bx = x
+        for bh, bw in ((0.40, 0.28), (0.58, 0.32), (0.44, 0.26)):
+            draw.rectangle([bx, base - h * bh, bx + w * bw, base], fill=CITY)
+            bx += w * (bw + 0.06)
+
+    fw = w * 0.15
+    fx = x + w * 0.5
+    draw.polygon([(fx - fw * 1.9, base), (fx - fw * 0.8, base - fire_h * 0.66),
+                  (fx - fw * 0.1, base)], fill=fire_color)
+    draw.polygon([(fx - fw * 0.8, base), (fx, base - fire_h),
+                  (fx + fw * 0.8, base)], fill=fire_color)
+    draw.polygon([(fx + fw * 0.1, base), (fx + fw * 0.95, base - fire_h * 0.70),
+                  (fx + fw * 1.9, base)], fill=fire_color)
+
+    if smoke_h <= 0:
+        return
+    n = max(3, int(smoke_h / max(1.0, w * 0.20)))
+    for i in range(n):
+        t = (i + 1) / n
+        r = w * (0.075 + 0.055 * t)
+        cy = min(y + r, base - fire_h - t * smoke_h)
+        ox = t * w * 0.10
+        draw.ellipse([fx - r + ox, cy - r, fx + r + ox, cy + r], fill=SMOKE)
+
+
 def build():
     img = Image.new("RGB", (W, H), PAPER)
     draw = ImageDraw.Draw(img)
