@@ -20,8 +20,7 @@ Cells : 2 WOUNDED, BAHRAIN
 == LEAD (MAIN 1 of 3) ==
 Kicker : CLIMATE SUMMIT COLLAPSES
 Headline: COP31 collapses without a deal as Europe holds firm
-Deck    : Antalya talks close two days late and empty-handed after the EU bloc
-          refuses to sign a final text that never names coal, oil or gas.
+Deck    : Antalya talks close two days late and empty-handed after the EU bloc refuses to sign a final text that never names coal, oil or gas.
 Artwork : locator globe with a red pin and leader line on Antalya.
 
 == MAIN STORIES 2-3 ==
@@ -82,6 +81,7 @@ PAGE ONE
 - Sudan and South Sudan carry no casualty figure, because sources conflict.
 - Houthi refinery strike is marked CLAIM.
 - Sparta II: headline "fire-hit" without a blame claim; sub carries only the
-  evacuation count, no "smoulder", no anchoring or towing claim.
+  evacuation count and one light injury, with no repetition of the headline
+  verb and no unverified salvage claim.
 - Every number in the rail is a figure two or more sources agree on.
 - Everything above is sourced from claims-22nov-variantC.md; no new facts.
