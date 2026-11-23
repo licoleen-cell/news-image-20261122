@@ -120,9 +120,18 @@ Aturan: 2-3 warna datar per adegan. Tidak ada foto, tidak ada gambar hasil salin
   India vs NZ Test 1 Wellington hari ke-4 (India declare 720/9 — Pant 128,
   Rahul 136 — unggul 352, NZ 119/2).
 - NUNGGU KEPUTUSAN LEK (JANGAN DIPAKAI dulu): Verstappen, Strathmore California.
-- LANTAI CERITA DITURUNKAN ke 20 (perintah lek 17:36, kalau semuanya bersih).
-  12 bersih + 2 bersyarat = 14. Sisa 6 cerita pakai placeholder di layout,
-  diisi dari batch berikutnya lek atau kandidat yang sudah lolos 2 sumber.
+- LANTAI CERITA DITURUNKAN ke 20 (perintah lek 17:36).
+  SLOT PLACEHOLDER = 20 - 12 bersih = 8 slot. (Satu angka: 8.)
+  BERSYARAT (belum diputuskan, TIDAK dihitung): Verstappen, Strathmore
+  California, Wembanyama (batch 3: 50 poin, 18 rebound, 5 blok,
+  Spurs 114-91 Pelicans, tipoff 01:00 UTC Minggu 22 Nov — kalau dipakai,
+  tulis jam UTC-nya, JANGAN kata "Saturday").
+- POLISH TEMPLATE 1+2 DIBATALIN (perintah lek 17:40) — pakai yang ada.
+  Fokus layout saja.
+- PERBAIKAN KECIL TEMPLATE 3+4 (perintah lek 17:40): bola = lingkaran putih +
+  1 pentagon hitam (bukan segitiga merah), kasih margin supaya lingkaran/gedung
+  tidak kepotong. Gedung: atap datar + pilar, bukan atap segitiga.
+- SEBELUM BUILD FINAL: grep "[CERITA" HARUS 0 hasil (tempel outputnya).
 
 ## KANDIDAT TAMBAHAN — DITAHAN (perintah lek 16:07)
 JANGAN tambah cerita dari daftar (a)-(r) di bawah ini sebelum lek kasih daftar
