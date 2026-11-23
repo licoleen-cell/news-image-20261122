@@ -59,12 +59,17 @@ BUKAN gambar unik per cerita. Digambar dengan kode (Pillow), datar + berwarna.
 - Angka besar (>=48pt) dan headline utama (32-36pt) HARUS terbaca di 300px.
 - Tulis ukuran font + tinggi huruf (em/cap/x-height) per tingkat di .done.
 
-## DAFTAR CERITA (diisi dari daftar fakta lek — 8 sudah terverifikasi 2+ sumber)
-SUDAH TERKONFIRMASI: COP31, Libya (suspected drone), Bahrain, Dymer, West Bank,
-Sudan Khartoum, South Sudan, California.
+## DAFTAR CERITA (diisi dari daftar fakta lek — YANG LOLOS CEK LEK)
+SUDAH LOLOS (boleh dipakai): COP31, Libya (suspected, Minggu 22 Nov), Bahrain
+(CLAIM), Dymer (at least 3, TANPA CONFIRMED), Liverpool 4-0 Man Utd,
+Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee, drone Rusia 186/161.
+Verstappen BERSYARAT (syarat belum disebut lek).
+DITAHAN (JANGAN DIPAKAI sampai lek kirim hasil cek): West Bank, Sudan Khartoum,
+South Sudan, California.
 KANDIDAT (a)-(r) DITAHAN (perintah lek 16:07): JANGAN tambah cerita dari daftar
 (a)-(r) sebelum lek kasih daftar fakta final (sebelum 17:00). Lihat
 plan-news-20261122-variantD.md untuk referensi riset saja.
+JANGAN tulis texts.txt sebelum daftar final lek tiba.
 
 ## PROSES
 - Hanya ubah gen_image.py + texts.txt. main.py JANGAN disentuh (stdlib-only copy).

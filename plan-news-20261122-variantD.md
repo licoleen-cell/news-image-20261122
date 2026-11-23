@@ -108,13 +108,16 @@ Aturan: 2-3 warna datar per adegan. Tidak ada foto, tidak ada gambar hasil salin
 - Tenggat: rencana 17:00, build selesai 20:00, laporan bukti 21:00.
   Jam 23:00 belum siap: BERHENTI, 7da71f0 tetap kandidat, pindah hidden-spec-cli.
 
-## STATUS (diperbarui 15:52 WIB, perintah lek)
+## STATUS (diperbarui 16:11 WIB, koreksi lek)
 - Rencana ini DRAFT. Daftar cerita final menunggu daftar fakta lek.
-- Cerita Minggu 22 Nov yang sudah terverifikasi 2+ sumber (dari riset C):
-  COP31, Libya, Bahrain, Dymer, West Bank, Sudan Khartoum, South Sudan,
-  California (8 cerita). Cikande DIBUANG ke date check, Nigeria DITAHAN
-  (jangan dipakai sampai lek kasih 2 sumber 22 Nov). Butuh 16-22 cerita lagi
-  dari daftar lek + riset tambahan (tiap tambahan wajib 2 sumber 22 Nov).
+- YANG SUDAH LOLOS CEK LEK (boleh dipakai): COP31, Libya (suspected, Minggu 22 Nov),
+  Bahrain (CLAIM), Dymer (at least 3, TANPA CONFIRMED), Liverpool 4-0 Man Utd,
+  Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee, drone Rusia 186/161.
+  Verstappen BERSYARAT (syarat belum disebut lek).
+- DITAHAN — JANGAN DIPAKAI sampai lek kirim hasil cek: West Bank, Sudan Khartoum,
+  South Sudan, California. (Koreksi: "8 cerita terkonfirmasi" sebelumnya SALAH —
+  4 dari 8 itu belum lolos cek lek.)
+- Butuh cerita lagi dari daftar fakta lek untuk mencapai 24-30.
 
 ## KANDIDAT TAMBAHAN — DITAHAN (perintah lek 16:07)
 JANGAN tambah cerita dari daftar (a)-(r) di bawah ini sebelum lek kasih daftar
