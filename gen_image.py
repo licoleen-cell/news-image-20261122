@@ -263,11 +263,11 @@ def lead(draw, img, top, bottom):
 
 STORIES = [
     ("LIBYA", "Benghazi", "Sea drone hits Russian warship",
-     "Libyan officers say a Ukrainian drone struck the ship at the base."),
+     "Libyan officers say a suspected Ukrainian drone struck it."),
     ("UKRAINE", "Dymer", "Russian drone hits Kyiv apartment block",
      "Rescue teams search the rubble in Dymer, near the capital."),
     ("GULF", "Manama", "Iran projectile hits Bahrain industrial site",
-     "Two wounded at Sitra; Iran's Guards claim two US radars destroyed."),
+     "Two wounded at Sitra; Iran's Guards claim two US radars hit."),
     ("INDONESIA", "Cikande", "Factory fire kills three in Banten",
      "Blaze at a candy plant in Cikande leaves dozens missing."),
     ("SPACE", "Mercury", "BepiColombo reaches orbit around Mercury",
@@ -279,7 +279,7 @@ STORIES = [
     ("MARKETS", "New York, Friday", "Wall Street slides into correction",
      "S&P 500 falls 3.7% to 6,910; Nasdaq drops 5.3% on Friday."),
     ("MEXICO", "Sinaloa, Friday", "Mexico captures El Chapo Isidro",
-     "11 killed as special forces arrest the Sinaloa cartel boss."),
+     "11 killed as special forces arrest the Los Mazatlecos boss."),
 ]
 
 

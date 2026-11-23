@@ -18,7 +18,7 @@ Artwork : stylised locator globe with a red pin on Antalya.
 == GRID (3 x 3) ==
 1. LIBYA . Benghazi
    Sea drone hits Russian warship
-   Libyan officers say a Ukrainian drone struck the ship at the base.
+   Libyan officers say a suspected Ukrainian drone struck it.
 
 2. UKRAINE . Dymer
    Russian drone hits Kyiv apartment block
@@ -26,7 +26,7 @@ Artwork : stylised locator globe with a red pin on Antalya.
 
 3. GULF . Manama
    Iran projectile hits Bahrain industrial site
-   Two wounded at Sitra; Iran's Guards claim two US radars destroyed.
+   Two wounded at Sitra; Iran's Guards claim two US radars hit.
 
 4. INDONESIA . Cikande
    Factory fire kills three in Banten
@@ -50,7 +50,7 @@ Artwork : stylised locator globe with a red pin on Antalya.
 
 9. MEXICO . Sinaloa, Friday
    Mexico captures El Chapo Isidro
-   11 killed as special forces arrest the Sinaloa cartel boss.
+   11 killed as special forces arrest the Los Mazatlecos boss.
 
 == FOOTER ==
 COP31 . Benghazi . Dymer . Bahrain . Cikande . Mercury . West Bank . Nigeria . Markets . Mexico
