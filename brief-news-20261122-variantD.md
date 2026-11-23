@@ -59,18 +59,25 @@ BUKAN gambar unik per cerita. Digambar dengan kode (Pillow), datar + berwarna.
 - Angka besar (>=48pt) dan headline utama (32-36pt) HARUS terbaca di 300px.
 - Tulis ukuran font + tinggi huruf (em/cap/x-height) per tingkat di .done.
 
-## DAFTAR CERITA (batch 1 lek 17:28 — BOLEH DIPAKAI, 10 cerita)
+## DAFTAR CERITA (batch 1+2 lek — BOLEH DIPAKAI, 12 cerita bersih)
 COP31 (molor 2 hari tanpa kesepakatan), Libya Benghazi (suspected, 10 luka ringan),
 Bahrain (CLAIM IRGC), Dymer (at least 3, TANPA CONFIRMED), Liverpool 4-0 Man Utd,
 Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee, KC 34-7 Arizona,
-Buffalo 26-9 Miami, drone Rusia 186/161.
+Buffalo 26-9 Miami, drone Rusia 186/161, West Bank (REPORTED: pemukim serang
+beberapa desa semalam menuju Minggu 22 Nov, sedikitnya 12 kendaraan dibakar —
+residents said, Eisenkot mengecam, TANPA angka korban),
+India vs NZ Test 1 Wellington hari ke-4 (India declare 720/9 — Pant 128,
+Rahul 136 — unggul 352, NZ 119/2).
 NUNGGU KEPUTUSAN LEK (JANGAN DIPAKAI dulu): Verstappen, Strathmore California.
-DITAHAN (JANGAN DIPAKAI sampai lek kirim hasil cek): West Bank, Sudan Khartoum,
+DITAHAN (JANGAN DIPAKAI sampai lek kirim hasil cek): Sudan Khartoum,
 South Sudan, California (selain Strathmore).
+LANTAI CERITA: 20 (perintah lek 17:36). 12 bersih + 2 bersyarat = 14.
+Sisa 6 pakai placeholder di layout.
 KANDIDAT (a)-(r) DITAHAN (perintah lek 16:07): JANGAN tambah cerita dari daftar
 (a)-(r) sebelum lek kasih daftar fakta final. Lihat
 plan-news-20261122-variantD.md untuk referensi riset saja.
-JANGAN tulis texts.txt sebelum batch 2 lek tiba.
+JANGAN tulis texts.txt final sebelum batch berikutnya lek tiba — layout pakai
+placeholder dulu.
 
 ## PROSES
 - Hanya ubah gen_image.py + texts.txt. main.py JANGAN disentuh (stdlib-only copy).

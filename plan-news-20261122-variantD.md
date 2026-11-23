@@ -108,17 +108,21 @@ Aturan: 2-3 warna datar per adegan. Tidak ada foto, tidak ada gambar hasil salin
 - Tenggat: rencana 17:00, build selesai 20:00, laporan bukti 21:00.
   Jam 23:00 belum siap: BERHENTI, 7da71f0 tetap kandidat, pindah hidden-spec-cli.
 
-## STATUS (diperbarui 17:28 WIB, batch 1 lek)
-- Rencana ini DRAFT. Daftar cerita final menunggu batch 2 lek.
-- BATCH 1 — BOLEH DIPAKAI (10 cerita): COP31 (molor 2 hari tanpa kesepakatan),
-  Libya Benghazi (suspected, 10 luka ringan), Bahrain (CLAIM IRGC),
+## STATUS (diperbarui 17:36 WIB, batch 2 lek)
+- Rencana ini DRAFT. Layout MULAI SEKARANG dengan placeholder (perintah lek 17:36).
+- BATCH 1 + 2 — BOLEH DIPAKAI (12 cerita bersih): COP31 (molor 2 hari tanpa
+  kesepakatan), Libya Benghazi (suspected, 10 luka ringan), Bahrain (CLAIM IRGC),
   Dymer (at least 3, TANPA CONFIRMED), Liverpool 4-0 Man Utd,
   Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee, KC 34-7 Arizona,
-  Buffalo 26-9 Miami, drone Rusia 186/161.
+  Buffalo 26-9 Miami, drone Rusia 186/161, West Bank (REPORTED: pemukim serang
+  beberapa desa semalam menuju Minggu 22 Nov, sedikitnya 12 kendaraan dibakar
+  — residents said, Eisenkot mengecam, TANPA angka korban),
+  India vs NZ Test 1 Wellington hari ke-4 (India declare 720/9 — Pant 128,
+  Rahul 136 — unggul 352, NZ 119/2).
 - NUNGGU KEPUTUSAN LEK (JANGAN DIPAKAI dulu): Verstappen, Strathmore California.
-- DITAHAN — JANGAN DIPAKAI sampai lek kirim hasil cek: West Bank, Sudan Khartoum,
-  South Sudan, California (selain Strathmore).
-- Butuh 14-20 cerita lagi dari batch 2 lek untuk mencapai 24-30.
+- LANTAI CERITA DITURUNKAN ke 20 (perintah lek 17:36, kalau semuanya bersih).
+  12 bersih + 2 bersyarat = 14. Sisa 6 cerita pakai placeholder di layout,
+  diisi dari batch berikutnya lek atau kandidat yang sudah lolos 2 sumber.
 
 ## KANDIDAT TAMBAHAN — DITAHAN (perintah lek 16:07)
 JANGAN tambah cerita dari daftar (a)-(r) di bawah ini sebelum lek kasih daftar
