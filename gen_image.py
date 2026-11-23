@@ -103,7 +103,7 @@ MEDIUM = [
      "11 killed as special forces arrest the Los Mazatlecos boss.",
      ("FRIDAY", ACCENT), (-107.5, 25.0), (-108.05, 25.57)),
     ("SPARTA II", "Fire-hit Russian ship still smoulders in Finnish waters",
-     "Sparta II still smouldering Sunday; 16 crew evacuated after Saturday fire.",
+     "16 crew evacuated, one lightly injured after Saturday fire.",
      None, (20.0, 58.0), (22.10, 59.80)),
 ]
 
