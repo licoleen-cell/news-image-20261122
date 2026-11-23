@@ -1,64 +1,112 @@
-THE WORLD — SUNDAY 22 NOVEMBER 2026
-Every string rendered into image.png, in reading order.
-
-== MASTHEAD ==
-THE WORLD
 VOL. XII . NO. 4,182
 LATE EDITION
+THE WORLD
 SUNDAY 22 NOVEMBER 2026
-
-== LEAD ==
-Kicker : CLIMATE SUMMIT COLLAPSES
-Headline: COP31 collapses without a deal as Europe holds firm
-Deck    : Antalya talks close two days late and empty-handed after the EU bloc
-          refuses to sign a final text that never names coal, oil or gas.
-Caption : Antalya, Turkey: the summit venue where talks ran past deadline.
-Artwork : stylised locator globe with a red pin on Antalya.
-
-== GRID (3 x 3) ==
-1. LIBYA . Benghazi
-   Sea drone hits Russian warship
-   Libyan officers say a suspected Ukrainian drone struck it.
-
-2. UKRAINE . Dymer
-   Russian drone hits Kyiv apartment block
-   Rescue teams search the rubble in Dymer, near the capital.
-
-3. GULF . Manama
-   Iran projectile hits Bahrain industrial site
-   Two wounded at Sitra; Iran's Guards claim two US radars hit.
-
-4. INDONESIA . Cikande
-   Factory fire kills three in Banten
-   Blaze at a candy plant in Cikande leaves dozens missing.
-
-5. SPACE . Mercury
-   BepiColombo reaches orbit around Mercury
-   European-Japanese probe arrives after an eight-year voyage.
-
-6. WEST BANK . Ramallah
-   Settlers burn cars across West Bank
-   Israel opens a probe into arson in four villages.
-
-7. NIGERIA . Bayelsa
-   Boat capsize kills 24 in Nigeria
-   At least 24 died; the vessel carried mourners to a funeral.
-
-8. MARKETS . New York, Friday
-   Wall Street slides into correction
-   S&P 500 falls 3.7% to 6,910; Nasdaq drops 5.3% on Friday.
-
-9. MEXICO . Sinaloa, Friday
-   Mexico captures El Chapo Isidro
-   11 killed as special forces arrest the Los Mazatlecos boss.
-
-== FOOTER ==
-COP31 . Benghazi . Dymer . Bahrain . Cikande . Mercury . West Bank . Nigeria . Markets . Mexico
-
-== FACT DISCIPLINE ==
-- Bahrain: the two destroyed US radars are attributed to Iran's Guards as a
-  claim ("Guards claim"), not reported as fact.
-- Dymer: no casualty number, because sources disagree (14 missing vs 2 dead).
-- Cikande: "dozens missing", because sources give 36 and 37.
-- Markets and Mexico carry a "Friday" dateline; they are 20 Nov, not 22 Nov.
-- Everything above is sourced from research-22nov.md; no facts from memory.
+12
+AT LEAST 12 CARS BURNED
+720/9
+INDIA DECLARE 720/9
+4-0
+LIVERPOOL BEAT MAN UTD 4-0
+186
+RUSSIA FIRES 186 DRONES
+50
+WEMBANYAMA SCORES 50
+SUNDAY 22 NOVEMBER, HOUR BY HOUR IN UTC
+00
+02
+04
+06
+08
+10
+14
+16
+18
+20
+22
+01:00 Wembanyama tipoff
+03:30 Strathmore, California
+05:50 Verstappen finish
+10:00 Hong Kong polls shut
+13:00 Barcelona kick-off
+16:30 Liverpool kick-off
+18:00 NFL kick-offs
+EUROPE
+MIDDLE EAST
+ASIA
+AMERICAS
+SPORT
+WHERE THE DAY HAPPENED
+1
+2
+3
+COP31 ANTALYA
+BENGHAZI
+SITRA
+COP31
+Antalya
+CLIMATE TALKS END WITH NO DEAL
+Summit closes two days late; no final text names coal, oil or gas.
+LIBYA
+Benghazi
+SUSPECTED DRONE HITS RUSSIAN WARSHIP
+At Benghazi naval base; 10 lightly wounded, officials say.
+BAHRAIN
+Sitra
+CLAIM
+BAHRAIN SAYS IRAN STRUCK PLANT
+IRGC claims the strike.
+UKRAINE
+Dymer, near Kyiv
+At least 3 killed.
+FOOTBALL
+Liverpool 4-0 Man Utd
+4-0 at 16:30 UTC.
+Barcelona 3-2 Villarreal
+3-2 at 13:00 UTC.
+NFL
+Dallas 51-30 Tennessee
+51-30 at 18:00 UTC.
+Kansas City 34-7 Arizona
+34-7 at 18:00 UTC.
+Buffalo 26-9 Miami
+26-9 at 18:00 UTC.
+Russia fires 186 drones
+161 of 186 downed.
+WEST BANK
+REPORTED
+Settlers burn 12 cars
+Four villages hit.
+CRICKET
+India declare 720/9
+Lead 352; NZ 119/2.
+VATICAN
+Pope Leo XIV eats with poor
+About 1,300 guests.
+IN BRIEF
+HONG KONG
+98.79% turnout, polls shut 18:00 HKT (10:00 UTC)
+NEPAL
+PM Balendra Shah lands in Delhi
+F1
+Verstappen wins, finishes 05:50 UTC
+USA
+Strathmore shooting, 9 shot at concert, ~03:30 UTC
+NBA
+Wembanyama 50 points, 18 rebounds
+DATE CHECK . NOT YET 22 NOVEMBER
+MEXICO . MARKETS
+Friday 20 Nov
+BEPICOLOMBO
+Saturday 21 Nov, 18:24 UTC
+SPARTA II
+Saturday 21 Nov, ~06:50 UTC
+BOLSONARO
+CIKANDE
+Saturday 21 Nov, night
+NIGERIA
+held, date not confirmed
+ESTONIA
+decided Fri 20 Nov, announced Sun 15 Nov, effective 1 Dec
+THE WORLD . SUNDAY 22 NOVEMBER 2026
+18 STORIES

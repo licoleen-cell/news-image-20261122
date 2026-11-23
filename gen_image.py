@@ -674,7 +674,7 @@ D_NUMBERS = [
     ("12", "AT LEAST 12 CARS BURNED"),
     ("720/9", "INDIA DECLARE 720/9"),
     ("4-0", "LIVERPOOL BEAT MAN UTD 4-0"),
-    ("51-30", "DALLAS BEAT TENNESSEE 51-30"),
+    ("186", "RUSSIA FIRES 186 DRONES"),
     ("50", "WEMBANYAMA SCORES 50"),
 ]
 
@@ -862,20 +862,45 @@ def d_map(draw, y, h=58):
         pts = [(px(lon), py(lat)) for lon, lat in poly]
         draw.polygon(pts, fill=LAND, outline=LAND_EDGE)
 
+    r = 7
+    pad = 2
+    pin_f = font(SERIF_BOLD, 10)
+    lf = font(SERIF_BOLD, 9)
+
+    pins = []
     for n, lon, lat, label in D_MAP_PINS:
         cx, cy = px(lon), py(lat)
-        r = 7
         draw.line([(cx, cy), (cx, cy - 10)], fill=ACCENT, width=2)
         draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=ACCENT)
-        f = font(SERIF_BOLD, 10)
-        draw.text((cx - text_w(draw, str(n), f) / 2, cy - 6), str(n),
-                  font=f, fill=PAPER)
-        lf = font(SERIF_BOLD, 9)
+        draw.text((cx - text_w(draw, str(n), pin_f) / 2, cy - 6), str(n),
+                  font=pin_f, fill=PAPER)
+        pins.append((label, cx, cy,
+                     (cx - r - pad, cy - r - pad, cx + r + pad, cy + r + pad)))
+
+    # Every pin box is known before any label is placed, so a label can never
+    # land on a pin. Candidate slots sit near its own pin, nearest first.
+    taken = [box for _, _, _, box in pins]
+    for label, cx, cy, _ in pins:
         lw = text_w(draw, label, lf)
-        lx = min(max(cx - lw / 2, x0 + 2), x1 - lw - 2)
-        ly = min(cy + r + 2, top + h - 11)
-        draw.rectangle([lx - 2, ly - 1, lx + lw + 2, ly + 10], fill=(232, 240, 246))
+        slots = [(dy, dx) for dy in (r + 2, r + 15, -r - 14, h - 13)
+                 for dx in (0, -(lw / 2 + r + 4), lw / 2 + r + 4,
+                            -(lw + r + 4), lw + r + 4)]
+        slots.sort(key=lambda s: (abs(s[0] - r - 2), abs(s[1])))
+        for dy, dx in slots:
+            lx = min(max(cx + dx - lw / 2, x0 + pad), x1 - lw - pad)
+            ly = min(max(cy + dy, top + pad), top + h - 13)
+            box = (lx - pad, ly - pad, lx + lw + pad, ly + 11 + pad)
+            if all(not (min(box[2], t[2]) - max(box[0], t[0]) > 0
+                        and min(box[3], t[3]) - max(box[1], t[1]) > 0)
+                   for t in taken):
+                break
+
+        draw.line([(cx, cy + (r if dy > 0 else -r)),
+                   (cx, ly - 1 if dy > 0 else ly + 12)],
+                  fill=(176, 172, 162), width=1)
+        draw.rectangle([box[0], box[1], box[2], box[3]], fill=(232, 240, 246))
         draw.text((lx, ly - 1), label, font=lf, fill=SOFT)
+        taken.append(box)
     return top + h
 
 
@@ -943,16 +968,16 @@ def d_leads(draw, y):
 
 D_MIDS = [
     ("UKRAINE", "Dymer, near Kyiv", "At least 3 killed.", ""),
-    ("FOOTBALL", "Liverpool 4-0 Man Utd", "4-0, kick-off 16:30 UTC.", ""),
-    ("FOOTBALL", "Barcelona 3-2 Villarreal", "3-2, kick-off 13:00 UTC.", ""),
-    ("NFL", "Dallas 51-30 Tennessee", "51-30, kick-off 18:00 UTC.", ""),
-    ("NFL", "Kansas City 34-7 Arizona", "34-7, kick-off 18:00 UTC.", ""),
-    ("NFL", "Buffalo 26-9 Miami", "26-9, kick-off 18:00 UTC.", ""),
-    ("UKRAINE", "Russia fires 186 drones", "161 downed, Kyiv says.", ""),
-    ("WEST BANK", "Settlers burn 12 cars", "Four villages hit overnight.",
+    ("FOOTBALL", "Liverpool 4-0 Man Utd", "4-0 at 16:30 UTC.", ""),
+    ("FOOTBALL", "Barcelona 3-2 Villarreal", "3-2 at 13:00 UTC.", ""),
+    ("NFL", "Dallas 51-30 Tennessee", "51-30 at 18:00 UTC.", ""),
+    ("NFL", "Kansas City 34-7 Arizona", "34-7 at 18:00 UTC.", ""),
+    ("NFL", "Buffalo 26-9 Miami", "26-9 at 18:00 UTC.", ""),
+    ("UKRAINE", "Russia fires 186 drones", "161 of 186 downed.", ""),
+    ("WEST BANK", "Settlers burn 12 cars", "Four villages hit.",
      "REPORTED"),
-    ("CRICKET", "India declare 720/9", "Lead 352; NZ 119/2 in reply.", ""),
-    ("VATICAN", "Pope Leo XIV eats with poor", "1,300 guests at the Vatican.",
+    ("CRICKET", "India declare 720/9", "Lead 352; NZ 119/2.", ""),
+    ("VATICAN", "Pope Leo XIV eats with poor", "About 1,300 guests.",
      ""),
 ]
 
