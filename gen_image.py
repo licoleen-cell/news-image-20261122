@@ -835,14 +835,15 @@ def d_tag(draw, xy, name):
 
 
 D_MAP_PINS = [
-    (1, 30.7, 36.9, "COP31 ANTALYA"),
-    (2, 20.1, 32.1, "BENGHAZI"),
-    (3, 50.6, 26.15, "SITRA"),
+    (30.7, 36.9, "COP31 ANTALYA"),
+    (20.1, 32.1, "BENGHAZI"),
+    (50.6, 26.15, "SITRA"),
 ]
 
 
 def d_map(draw, y, h=58):
-    """Plain world outline with three numbered pins for the lead stories."""
+    """Plain world outline with three pins for the lead stories. The pins carry
+    no numbers: labels alone name them, so no label can point at the wrong pin."""
     x0, x1 = M, W - M
     w = x1 - x0
     top = y + 13
@@ -864,43 +865,39 @@ def d_map(draw, y, h=58):
 
     r = 7
     pad = 2
-    pin_f = font(SERIF_BOLD, 10)
     lf = font(SERIF_BOLD, 9)
 
     pins = []
-    for n, lon, lat, label in D_MAP_PINS:
+    for lon, lat, label in D_MAP_PINS:
         cx, cy = px(lon), py(lat)
         draw.line([(cx, cy), (cx, cy - 10)], fill=ACCENT, width=2)
         draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=ACCENT)
-        draw.text((cx - text_w(draw, str(n), pin_f) / 2, cy - 6), str(n),
-                  font=pin_f, fill=PAPER)
-        pins.append((label, cx, cy,
-                     (cx - r - pad, cy - r - pad, cx + r + pad, cy + r + pad)))
+        pins.append((label, cx, cy))
 
-    # Every pin box is known before any label is placed, so a label can never
-    # land on a pin. Candidate slots sit near its own pin, nearest first.
-    taken = [box for _, _, _, box in pins]
-    for label, cx, cy, _ in pins:
+    # Each label sits on a fixed side of its own pin: pin 1 below, pin 2
+    # above-left, pin 3 above-right. Those sides keep the three label boxes
+    # clear of all three dots inside a 58px band, so no two labels can be
+    # confused with each other's pin. A leader runs from the dot edge to the
+    # nearest edge of its own label.
+    for i, (label, cx, cy) in enumerate(pins):
         lw = text_w(draw, label, lf)
-        slots = [(dy, dx) for dy in (r + 2, r + 15, -r - 14, h - 13)
-                 for dx in (0, -(lw / 2 + r + 4), lw / 2 + r + 4,
-                            -(lw + r + 4), lw + r + 4)]
-        slots.sort(key=lambda s: (abs(s[0] - r - 2), abs(s[1])))
-        for dy, dx in slots:
-            lx = min(max(cx + dx - lw / 2, x0 + pad), x1 - lw - pad)
-            ly = min(max(cy + dy, top + pad), top + h - 13)
-            box = (lx - pad, ly - pad, lx + lw + pad, ly + 11 + pad)
-            if all(not (min(box[2], t[2]) - max(box[0], t[0]) > 0
-                        and min(box[3], t[3]) - max(box[1], t[1]) > 0)
-                   for t in taken):
-                break
+        if i == 0:
+            lx, ly = cx - lw / 2.0, cy + r + 7
+        elif i == 1:
+            lx, ly = cx - lw - 14, top + pad + 1
+        else:
+            lx, ly = cx + 14, top + pad + 1
+        lx = min(max(lx, x0 + pad), x1 - lw - pad)
+        box = (lx - pad, ly - pad, lx + lw + pad, ly + 11 + pad)
 
-        draw.line([(cx, cy + (r if dy > 0 else -r)),
-                   (cx, ly - 1 if dy > 0 else ly + 12)],
+        qx = min(max(cx, box[0]), box[2])
+        qy = min(max(cy, box[1]), box[3])
+        vx, vy = qx - cx, qy - cy
+        d_len = math.hypot(vx, vy) or 1.0
+        draw.line([(cx + vx / d_len * r, cy + vy / d_len * r), (qx, qy)],
                   fill=(176, 172, 162), width=1)
         draw.rectangle([box[0], box[1], box[2], box[3]], fill=(232, 240, 246))
         draw.text((lx, ly - 1), label, font=lf, fill=SOFT)
-        taken.append(box)
     return top + h
 
 
