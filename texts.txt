@@ -1,5 +1,6 @@
 THE WORLD — SUNDAY 22 NOVEMBER 2026
 Every string rendered into image.png, in reading order.
+Variant A: every standfirst is a single line set in Noto Serif ExtraCondensed 27.4pt.
 
 == MASTHEAD ==
 THE WORLD
@@ -18,47 +19,55 @@ Artwork : stylised locator globe with a red pin on Antalya.
 == GRID (3 x 3) ==
 1. LIBYA . Benghazi
    Sea drone hits Russian warship
-   Libyan officers say a suspected Ukrainian drone struck it.
+   Suspected Ukrainian drone.
 
 2. UKRAINE . Dymer
    Russian drone hits Kyiv apartment block
-   Rescue teams search the rubble in Dymer, near the capital.
+   Teams search the rubble.
 
 3. GULF . Manama
    Iran projectile hits Bahrain industrial site
-   Two wounded at Sitra; Iran's Guards claim two US radars hit.
+   Two wounded at Sitra.
 
 4. INDONESIA . Cikande
    Factory fire kills three in Banten
-   Blaze at a candy plant in Cikande leaves dozens missing.
+   Dozens still missing.
 
 5. SPACE . Mercury
    BepiColombo reaches orbit around Mercury
-   European-Japanese probe arrives after an eight-year voyage.
+   Eight years to Mercury.
 
 6. WEST BANK . Ramallah
    Settlers burn cars across West Bank
-   Israel opens a probe into arson in four villages.
+   Arson in four villages.
 
 7. NIGERIA . Bayelsa
    Boat capsize kills 24 in Nigeria
-   At least 24 died; the vessel carried mourners to a funeral.
+   Mourners to a funeral.
 
 8. MARKETS . New York, Friday
    Wall Street slides into correction
-   S&P 500 falls 3.7% to 6,910; Nasdaq drops 5.3% on Friday.
+   S&P -3.7%, Nasdaq -5.3%.
 
 9. MEXICO . Sinaloa, Friday
    Mexico captures El Chapo Isidro
-   11 killed as special forces arrest the Los Mazatlecos boss.
+   11 killed; boss arrested.
 
 == FOOTER ==
 COP31 . Benghazi . Dymer . Bahrain . Cikande . Mercury . West Bank . Nigeria . Markets . Mexico
 
 == FACT DISCIPLINE ==
-- Bahrain: the two destroyed US radars are attributed to Iran's Guards as a
-  claim ("Guards claim"), not reported as fact.
+- Bahrain: the picture says only "Two wounded at Sitra." — the confirmed fact.
+  The IRGC claim about two US Patriot radars does not fit on one line at this
+  size, so it is deliberately omitted here (it stays in Variant B). No claim
+  from it appears in this variant, so nothing is asserted either way.
+- Libya: the "suspected" qualification is kept, because officers call the drone
+  suspected Ukrainian and Kyiv has not claimed the strike.
 - Dymer: no casualty number, because sources disagree (14 missing vs 2 dead).
-- Cikande: "dozens missing", because sources give 36 and 37.
-- Markets and Mexico carry a "Friday" dateline; they are 20 Nov, not 22 Nov.
+- Cikande: "dozens still missing", because sources give 36 and 37.
+- Markets: -3.7% and -5.3% are the S&P 500 and Nasdaq moves on Friday 20 Nov,
+  carried with a "Friday" dateline. The 6,910 index level is dropped only for
+  space; it is not contradicted.
+- Mexico: 11 killed (4 soldiers + 7 gunmen) and the Los Mazatlecos boss
+  arrested; "Friday" dateline, 20 Nov.
 - Everything above is sourced from research-22nov.md; no facts from memory.

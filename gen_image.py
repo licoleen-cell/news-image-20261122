@@ -42,6 +42,7 @@ SERIF_XBOLD = FONT_DIR + "NotoSerif-ExtraBold.ttf"
 SERIF_BOLD = FONT_DIR + "NotoSerif-Bold.ttf"
 SERIF_COND_BOLD = FONT_DIR + "NotoSerif-CondensedBold.ttf"
 SERIF_COND = FONT_DIR + "NotoSerif-Condensed.ttf"
+SERIF_XCOND = FONT_DIR + "NotoSerif-ExtraCondensed.ttf"
 SERIF = FONT_DIR + "NotoSerif-Regular.ttf"
 SERIF_ITALIC = FONT_DIR + "NotoSerif-Italic.ttf"
 
@@ -263,29 +264,29 @@ def lead(draw, img, top, bottom):
 
 STORIES = [
     ("LIBYA", "Benghazi", "Sea drone hits Russian warship",
-     "Libyan officers say a suspected Ukrainian drone struck it."),
+     "Suspected Ukrainian drone."),
     ("UKRAINE", "Dymer", "Russian drone hits Kyiv apartment block",
-     "Rescue teams search the rubble in Dymer, near the capital."),
+     "Teams search the rubble."),
     ("GULF", "Manama", "Iran projectile hits Bahrain industrial site",
-     "Two wounded at Sitra; Iran's Guards claim two US radars hit."),
+     "Two wounded at Sitra."),
     ("INDONESIA", "Cikande", "Factory fire kills three in Banten",
-     "Blaze at a candy plant in Cikande leaves dozens missing."),
+     "Dozens still missing."),
     ("SPACE", "Mercury", "BepiColombo reaches orbit around Mercury",
-     "European-Japanese probe arrives after an eight-year voyage."),
+     "Eight years to Mercury."),
     ("WEST BANK", "Ramallah", "Settlers burn cars across West Bank",
-     "Israel opens a probe into arson in four villages."),
+     "Arson in four villages."),
     ("NIGERIA", "Bayelsa", "Boat capsize kills 24 in Nigeria",
-     "At least 24 died; the vessel carried mourners to a funeral."),
+     "Mourners to a funeral."),
     ("MARKETS", "New York, Friday", "Wall Street slides into correction",
-     "S&P 500 falls 3.7% to 6,910; Nasdaq drops 5.3% on Friday."),
+     "S&P -3.7%, Nasdaq -5.3%."),
     ("MEXICO", "Sinaloa, Friday", "Mexico captures El Chapo Isidro",
-     "11 killed as special forces arrest the Los Mazatlecos boss."),
+     "11 killed; boss arrested."),
 ]
 
 
 def panel(draw, box, story):
     x0, y0, x1, y1 = box
-    w, h = x1 - x0, y1 - y0
+    w = x1 - x0
     kick, place, head, sub = story
 
     f_kick = font(SERIF_BOLD, 12)
@@ -296,40 +297,27 @@ def panel(draw, box, story):
         draw.text((x + 5, y0 + 1), label, font=f_place, fill=MUTED)
 
     top = y0 + KICK_H
-    budget = h - KICK_H - 4
 
-    # one headline size across the grid; only the standfirst may shrink
-    head_f = font(SERIF_BOLD, HEAD_SIZE)
-    head_lines = wrap(draw, head, head_f, w)
-    head_h = len(head_lines) * int(HEAD_SIZE * 1.1)
-    sub_f = font(SERIF, 12)
-    sub_lines = wrap(draw, sub, sub_f, w)
-    sub_h = len(sub_lines) * int(12 * 1.34)
-    if head_h + 5 + sub_h > budget:
-        sub_f = font(SERIF, 11)
-        sub_lines = wrap(draw, sub, sub_f, w)
-        sub_h = len(sub_lines) * int(11 * 1.34)
-
+    # every headline is sized to occupy at most HEAD_LINES lines, so the
+    # one-line standfirst lands on the same baseline across the grid
+    head_f, head_lines = fit(draw, head, SERIF_COND_BOLD, HEAD_SIZE, w,
+                             HEAD_LINES, floor=18)
     y = para(draw, (x0, top), head_lines, head_f, INK, int(head_f.size * 1.1))
-    para(draw, (x0, y + 5), sub_lines, sub_f, SOFT, int(sub_f.size * 1.34))
-    return top + head_h + 5 + sub_h
+
+    sub_f = font(SERIF_XCOND, SUB_SIZE)
+    sub_line = wrap(draw, sub, sub_f, w)
+    para(draw, (x0, y + SUB_GAP), sub_line[:1], sub_f, SOFT, SUB_LINE_H)
+    return y + SUB_GAP + SUB_LINE_H
 
 
 def panel_height(draw, w, story):
     kick, place, head, sub = story
-    head_f = font(SERIF_BOLD, HEAD_SIZE)
-    head_lines = wrap(draw, head, head_f, w)
-    for sub_size in (12, 11):
-        sub_f = font(SERIF, sub_size)
-        sub_lines = wrap(draw, sub, sub_f, w)
-        if len(head_lines) * int(HEAD_SIZE * 1.1) + 5 \
-                + len(sub_lines) * int(sub_size * 1.34) <= MAX_BODY:
-            sub_h = len(sub_lines) * int(sub_size * 1.34)
-            break
-    return KICK_H + len(head_lines) * int(HEAD_SIZE * 1.1) + 5 + sub_h
+    head_f, head_lines = fit(draw, head, SERIF_COND_BOLD, HEAD_SIZE, w,
+                             HEAD_LINES, floor=18)
+    return KICK_H + len(head_lines) * int(head_f.size * 1.1) + SUB_GAP + SUB_LINE_H
 
 
-GUT, PAD, ROW_GAP = 30, 5, 14
+GUT, PAD, ROW_GAP = 30, 5, 30
 
 
 def grid_boxes(draw, top):
@@ -368,8 +356,11 @@ def grid(draw, top, bottom):
 FOOTER = "COP31 . Benghazi . Dymer . Bahrain . Cikande . Mercury . West Bank . Nigeria . Markets . Mexico"
 
 HEAD_SIZE = 28
+HEAD_LINES = 2
 KICK_H = 19
-MAX_BODY = 3 * int(HEAD_SIZE * 1.1) + 5 + 2 * int(12 * 1.34)
+SUB_SIZE = 27.4  # ~8.03px em when the page is shown 300px wide
+SUB_LINE_H = 40
+SUB_GAP = 5
 
 
 def footer(draw, y):
