@@ -974,7 +974,7 @@ D_MIDS = [
     ("NFL", "Kansas City 34-7 Arizona", "Kick-off 18:00 UTC.", ""),
     ("NFL", "Buffalo 26-9 Miami", "Kick-off 18:00 UTC.", ""),
     ("UKRAINE", "Russia fires 186 drones", "161 of 186 downed.", ""),
-    ("WEST BANK", "Settlers burn at least 12 cars", "Four villages hit.",
+    ("WEST BANK", "Settlers burn at least 12 cars", "Several villages hit.",
      "REPORTED"),
     ("CRICKET", "India declare 720/9", "Lead 352; NZ 119/2.", ""),
     ("VATICAN", "Pope Leo XIV eats with poor", "About 1,300 guests.",
