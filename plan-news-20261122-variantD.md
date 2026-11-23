@@ -108,9 +108,9 @@ Aturan: 2-3 warna datar per adegan. Tidak ada foto, tidak ada gambar hasil salin
 - Tenggat: rencana 17:00, build selesai 20:00, laporan bukti 21:00.
   Jam 23:00 belum siap: BERHENTI, 7da71f0 tetap kandidat, pindah hidden-spec-cli.
 
-## STATUS (diperbarui 17:36 WIB, batch 2 lek)
-- Rencana ini DRAFT. Layout MULAI SEKARANG dengan placeholder (perintah lek 17:36).
-- BATCH 1 + 2 — BOLEH DIPAKAI (12 cerita bersih): COP31 (molor 2 hari tanpa
+## STATUS (diperbarui 17:53 WIB, batch 4 + keputusan lek)
+- Rencana ini DRAFT. Layout MULAI dengan placeholder (perintah lek 17:36).
+- BATCH 1+2+4 — BOLEH DIPAKAI (14 cerita bersih): COP31 (molor 2 hari tanpa
   kesepakatan), Libya Benghazi (suspected, 10 luka ringan), Bahrain (CLAIM IRGC),
   Dymer (at least 3, TANPA CONFIRMED), Liverpool 4-0 Man Utd,
   Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee, KC 34-7 Arizona,
@@ -118,19 +118,22 @@ Aturan: 2-3 warna datar per adegan. Tidak ada foto, tidak ada gambar hasil salin
   beberapa desa semalam menuju Minggu 22 Nov, sedikitnya 12 kendaraan dibakar
   — residents said, Eisenkot mengecam, TANPA angka korban),
   India vs NZ Test 1 Wellington hari ke-4 (India declare 720/9 — Pant 128,
-  Rahul 136 — unggul 352, NZ 119/2).
-- NUNGGU KEPUTUSAN LEK (JANGAN DIPAKAI dulu): Verstappen, Strathmore California.
-- LANTAI CERITA DITURUNKAN ke 20 (perintah lek 17:36).
-  SLOT PLACEHOLDER = 20 - 12 bersih = 8 slot. (Satu angka: 8.)
-  BERSYARAT (belum diputuskan, TIDAK dihitung): Verstappen, Strathmore
-  California, Wembanyama (batch 3: 50 poin, 18 rebound, 5 blok,
-  Spurs 114-91 Pelicans, tipoff 01:00 UTC Minggu 22 Nov — kalau dipakai,
-  tulis jam UTC-nya, JANGAN kata "Saturday").
+  Rahul 136 — unggul 352, NZ 119/2),
+  Paus Leo XIV (makan siang dengan sekitar 1.300 orang miskin di Aula Paulus VI
+  Vatikan, Minggu 22 Nov, Hari Orang Miskin Sedunia ke-10 — ditunda seminggu
+  karena kunjungan ke Amerika Latin),
+  Hong Kong (pemilihan subsektor Komite Pemilihan 2026 ditutup 18:00 HKT,
+  5.640 dari 5.709 pemilih memberi suara, partisipasi 98,79% — angka dari
+  otoritas HK, label REPORTED, tanpa penilaian).
+- DIPAKAI (keputusan lek 17:53): Verstappen, Strathmore California, Wembanyama
+  (50 poin, 18 rebound, 5 blok, Spurs 114-91 Pelicans, tipoff 01:00 UTC
+  Minggu 22 Nov). Tulis JAM UTC-nya, JANGAN kata "Saturday".
+- TOTAL: 14 bersih + 3 dipakai = 17. SLOT PLACEHOLDER = 20 - 17 = 3 slot.
+  (Satu angka: 3.)
 - POLISH TEMPLATE 1+2 DIBATALIN (perintah lek 17:40) — pakai yang ada.
-  Fokus layout saja.
-- PERBAIKAN KECIL TEMPLATE 3+4 (perintah lek 17:40): bola = lingkaran putih +
-  1 pentagon hitam (bukan segitiga merah), kasih margin supaya lingkaran/gedung
-  tidak kepotong. Gedung: atap datar + pilar, bukan atap segitiga.
+- PERBAIKAN KECIL TEMPLATE 3+4 SELESAI (commit 573276f, push e420695f):
+  bola = lingkaran putih + pentagon hitam, gedung = atap datar + pilar,
+  keduanya + margin.
 - SEBELUM BUILD FINAL: grep "[CERITA" HARUS 0 hasil (tempel outputnya).
 
 ## KANDIDAT TAMBAHAN — DITAHAN (perintah lek 16:07)

@@ -59,27 +59,26 @@ BUKAN gambar unik per cerita. Digambar dengan kode (Pillow), datar + berwarna.
 - Angka besar (>=48pt) dan headline utama (32-36pt) HARUS terbaca di 300px.
 - Tulis ukuran font + tinggi huruf (em/cap/x-height) per tingkat di .done.
 
-## DAFTAR CERITA (batch 1+2 lek — BOLEH DIPAKAI, 12 cerita bersih)
-COP31 (molor 2 hari tanpa kesepakatan), Libya Benghazi (suspected, 10 luka ringan),
-Bahrain (CLAIM IRGC), Dymer (at least 3, TANPA CONFIRMED), Liverpool 4-0 Man Utd,
-Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee, KC 34-7 Arizona,
-Buffalo 26-9 Miami, drone Rusia 186/161, West Bank (REPORTED: pemukim serang
-beberapa desa semalam menuju Minggu 22 Nov, sedikitnya 12 kendaraan dibakar —
-residents said, Eisenkot mengecam, TANPA angka korban),
+## DAFTAR CERITA (batch 1+2+4 + keputusan lek 17:53 — 17 cerita)
+BERSIH (14): COP31 (molor 2 hari tanpa kesepakatan), Libya Benghazi (suspected,
+10 luka ringan), Bahrain (CLAIM IRGC), Dymer (at least 3, TANPA CONFIRMED),
+Liverpool 4-0 Man Utd, Barcelona 3-2 Villarreal, Dallas 51-30 Tennessee,
+KC 34-7 Arizona, Buffalo 26-9 Miami, drone Rusia 186/161, West Bank (REPORTED:
+pemukim serang beberapa desa semalam menuju Minggu 22 Nov, sedikitnya
+12 kendaraan dibakar — residents said, Eisenkot mengecam, TANPA angka korban),
 India vs NZ Test 1 Wellington hari ke-4 (India declare 720/9 — Pant 128,
-Rahul 136 — unggul 352, NZ 119/2).
-NUNGGU KEPUTUSAN LEK (JANGAN DIPAKAI dulu): Verstappen, Strathmore California,
-Wembanyama (batch 3: 50 poin, 18 rebound, 5 blok, Spurs 114-91 Pelicans,
-tipoff 01:00 UTC Minggu 22 Nov — kalau dipakai, tulis jam UTC-nya, JANGAN
-kata "Saturday").
+Rahul 136 — unggul 352, NZ 119/2), Paus Leo XIV (makan siang dengan sekitar
+1.300 orang miskin di Aula Paulus VI Vatikan, Minggu 22 Nov, Hari Orang Miskin
+Sedunia ke-10), Hong Kong (pemilihan subsektor Komite Pemilihan 2026 ditutup
+18:00 HKT, 5.640 dari 5.709 pemilih, partisipasi 98,79% — REPORTED).
+DIPAKAI (keputusan lek 17:53, 3): Verstappen, Strathmore California,
+Wembanyama (50 poin, 18 rebound, 5 blok, Spurs 114-91 Pelicans,
+tipoff 01:00 UTC Minggu 22 Nov). Tulis JAM UTC-nya, JANGAN kata "Saturday".
 DITAHAN (JANGAN DIPAKAI sampai lek kirim hasil cek): Sudan Khartoum,
 South Sudan, California (selain Strathmore).
-LANTAI CERITA: 20 (perintah lek 17:36). SLOT PLACEHOLDER = 20 - 12 bersih
-= 8 slot. (Satu angka: 8.)
+LANTAI CERITA: 20. SLOT PLACEHOLDER = 20 - 17 = 3 slot. (Satu angka: 3.)
 POLISH TEMPLATE 1+2 DIBATALIN (perintah lek 17:40) — pakai yang ada.
-PERBAIKAN KECIL TEMPLATE 3+4: bola = lingkaran putih + 1 pentagon hitam
-(bukan segitiga merah), margin supaya lingkaran/gedung tidak kepotong.
-Gedung: atap datar + pilar, bukan atap segitiga.
+PERBAIKAN KECIL TEMPLATE 3+4 SELESAI (commit 573276f).
 SEBELUM BUILD FINAL: grep "[CERITA" HARUS 0 hasil (tempel outputnya).
 KANDIDAT (a)-(r) DITAHAN (perintah lek 16:07): JANGAN tambah cerita dari daftar
 (a)-(r) sebelum lek kasih daftar fakta final. Lihat
